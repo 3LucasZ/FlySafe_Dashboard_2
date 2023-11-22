@@ -10,9 +10,9 @@ if ("serviceWorker" in navigator) {
 }
 
 // //running variables
-// var dists = [0];
-// var distsImperial = [0];
-// var cnts = [0];
+var dists = [0];
+var distsImperial = [0];
+var cnts = [0];
 // var curVol = localStorage.getItem("volume");
 // if (curVol === null) curVol = 100;
 // else curVol = parseInt(curVol);
@@ -28,10 +28,10 @@ if ("serviceWorker" in navigator) {
 // var curSpeakMode = localStorage.getItem("speakMode");
 // if (curSpeakMode === null) curSpeakMode = 0;
 // else curSpeakMode = parseInt(curSpeakMode);
-// var curImperial = localStorage.getItem("imperial");
-// if (curImperial === null) curImperial = true;
-// else curImperial = curImperial === "true";
-// console.log("curImperial", curImperial);
+var curImperial = localStorage.getItem("imperial");
+if (curImperial === null) curImperial = true;
+else curImperial = curImperial === "true";
+console.log("curImperial", curImperial);
 // var curReboot = 1;
 // console.log("curReboot", curReboot);
 // var lastValue = 1000;
@@ -46,31 +46,31 @@ if ("serviceWorker" in navigator) {
 // else speakModeDiv.innerHTML = "Periodic";
 // imperialDiv.innerHTML = curImperial ? "Imperial" : "Metric";
 // distTypeDiv.innerHTML = curImperial ? "feet" : "meters";
-// var chart = new Chart(canvasDiv, {
-//   type: "line",
-//   data: {
-//     labels: cnts,
-//     datasets: [
-//       {
-//         label: "AGL Altitude (" + (curImperial ? "ft" : "m") + ")",
-//         data: curImperial ? distsImperial : dists,
-//         borderWidth: 1,
-//       },
-//     ],
-//   },
-//   options: {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     animation: {
-//       duration: 0,
-//     },
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//       },
-//     },
-//   },
-// });
+var chart = new Chart(canvasDiv, {
+  type: "line",
+  data: {
+    labels: cnts,
+    datasets: [
+      {
+        label: "AGL Altitude (" + (curImperial ? "ft" : "m") + ")",
+        data: curImperial ? distsImperial : dists,
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: {
+      duration: 0,
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+});
 
 // function updateGraphDisplay(newDist) {
 //   dists.push(newDist);
