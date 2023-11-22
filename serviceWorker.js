@@ -1,9 +1,14 @@
-const cacheName = repoName + "_v1"; //CHANGE BEFORE EVERY COMMIT!
+import { repoName } from "js/constants.js";
+
+const cacheName = "/" + repoName + "_v1"; //CHANGE BEFORE EVERY COMMIT!
 const assets = [
   repoName + "/",
   repoName + "/index.html",
-  repoName + "/websocket_client.html",
-  repoName + "/storage_client.html",
+  repoName + "/dist/output.css",
+  repoName + "/js/constants.js",
+  repoName + "/js/divs.js",
+  repoName + "/js/index.js",
+  repoName + "/js/utils.js",
 ];
 
 self.addEventListener("activate", (event) => {

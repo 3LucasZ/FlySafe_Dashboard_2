@@ -2,17 +2,17 @@
   "name": "FlySafe",
   "short_name": "FlySafe",
   "description": "App for FlySafe Module",
-  "scope": "/ClientServerTesters/",
-  "start_url": "/ClientServerTesters/",
+  "scope": "/FlySafe_Dashboard_2/",
+  "start_url": "/FlySafe_Dashboard_2/",
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
-  "orientation": "portrait-primary",
+  "orientation": "natural",
   "icons": [
     {
-      "src": "/ClientServerTesters/images/icons/icon-256x256.png",
+      "src": "/FlySafe_Dashboard_2/images/icons/icon.png",
       "type": "image/png",
-      "sizes": "256x256"
+      "sizes": "160x160"
     }
   ]
 }

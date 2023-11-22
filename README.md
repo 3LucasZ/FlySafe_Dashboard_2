@@ -13,6 +13,7 @@
 - Local session storage
 - - Limit: 5MB and only strings, which is about 5x10^6 characters.
 - - Save on window close: unreliable, so j do it every 10 seconds?
+- Icon generator: https://emoji.aranja.com/
 
 ### Choices
 
