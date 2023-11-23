@@ -7,7 +7,7 @@ const footerHTML = `
     <div id="tabs" class="flex justify-between">
       <a
         href="/FlySafe_Dashboard_2/index.html"
-        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const footerHTML = `
       </a>
       <a
         href="/FlySafe_Dashboard_2/pages/settings_page.html"
-        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ const footerHTML = `
       </a>
       <a
         href="/FlySafe_Dashboard_2/pages/insights_page.html"
-        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ const footerHTML = `
       </a>
       <a
         href="/FlySafe_Dashboard_2/pages/help_page.html"
-        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
+        class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
