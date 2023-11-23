@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!--TAB-->
     <title>FlySafe</title>
+    <link rel="icon" type="image/x-icon" href="images/icons/icon.png" />
+    <!--PWA UI-->
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
     />
-
+    <meta name="theme-color" content="#7dd3fc" />
+    <!--PWA-->
     <link
       rel="canonical"
       href="https://3lucasz.github.io/FlySafe_Dashboard_2/"
@@ -16,13 +20,11 @@
       rel="apple-touch-icon"
       href="/FlySafe_Dashboard_2/images/icons/icon.png"
     />
-    <link rel="icon" type="image/x-icon" href="images/icons/icon.png" />
-
-    <script src="js/chart.js"></script>
+    <!--TAILWIND-->
     <link href="dist/output.css" rel="stylesheet" />
   </head>
-  <body class="font-bold text-xl">
-    <div class="bg-gradient-to-br from-sky-300 to-cyan-200 text-center p-5">
+  <body class="font-bold text-xl overflow-clip select-none">
+    <div class="bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5">
       FlySafe Dashboard
     </div>
 
@@ -56,11 +58,15 @@
         <canvas id="canvasDiv"></canvas>
       </div>
     </div>
+    <div id="footer"></div>
   </body>
+  <!--GENERAL-->
   <script src="js/constants.js" type="module"></script>
   <script src="js/utils.js"></script>
+  <!--SPECIFIC-->
+  <script src="js/chart.js"></script>
   <script src="js/index.js"></script>
-  <div id="footer"></div>
+  <!--INJECT-->
   <script src="/FlySafe_Dashboard_2/components/footer.js"></script>
   <script src="/FlySafe_Dashboard_2/js/inject.js"></script>
 </html>

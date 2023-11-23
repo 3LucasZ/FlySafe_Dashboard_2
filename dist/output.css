@@ -1915,6 +1915,11 @@ video {
   background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
+.bg-sky-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(125 211 252 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -2226,6 +2231,10 @@ video {
 
 .pb-8 {
   padding-bottom: 2rem;
+}
+
+.pt-\[env\(safe-area-inset-top\)\] {
+  padding-top: env(safe-area-inset-top);
 }
 
 .text-left {
@@ -2721,6 +2730,10 @@ video {
 .content-\[\'this-is-also-valid\]-weirdly-enough\'\] {
   --tw-content: 'this-is-also-valid]-weirdly-enough';
   content: var(--tw-content);
+}
+
+.\[-webkit-touch-callout\:none\] {
+  -webkit-touch-callout: none;
 }
 
 @media (min-width: 640px) {
