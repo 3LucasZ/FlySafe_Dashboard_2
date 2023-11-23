@@ -38,7 +38,7 @@ function appendGraph(newDistM) {
     distsM.shift();
     times.shift();
   }
-  reGraph();
+  updGraph();
 }
 var chart = new Chart(canvasDiv);
 function updGraph() {
@@ -71,6 +71,51 @@ function updGraph() {
   });
 }
 updGraph();
+
+//websocket handler
+var websocket;
+window.onload = (event) => {
+  websocket_connect();
+};
+function websocket_connect() {
+  const url = "wss://192.168.4.1/ws";
+  console.log("Connecting to:", url);
+  websocket = new WebSocket(url);
+  websocket.onopen = function (evt) {
+    onOpen(evt);
+  };
+  websocket.onclose = function (evt) {
+    onClose(evt);
+  };
+  websocket.onmessage = function (evt) {
+    onMessage(evt);
+  };
+  websocket.onerror = function (evt) {
+    onError(evt);
+  };
+}
+function updateStatusUI(connected) {
+  statusDiv.innerHTML = connected ? "Connected" : "Not Connected";
+  statusDiv.className =
+    "p-4 rounded-lg text-center " + (connected ? "bg-green-300" : "bg-red-300");
+}
+function onOpen(evt) {
+  console.log("Websocket connected");
+  updateStatusUI(true);
+}
+function onClose(evt) {
+  console.log("Websocket disconnected");
+  updateStatusUI(false);
+  websocket_connect();
+}
+function onMessage(evt) {
+  console.log(evt.data);
+  distDiv.innerHTML = evt.data;
+  appendGraph(evt.data);
+}
+function onError(evt) {
+  console.log(evt.data);
+}
 
 // //set up BLE
 // const SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
