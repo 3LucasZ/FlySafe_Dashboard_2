@@ -28,97 +28,95 @@
     <link href="/FlySafe_Dashboard_2/dist/output.css" rel="stylesheet" />
   </head>
   <body class="font-bold text-xl overflow-clip select-none">
-    <div class="h-screen">
-      <div class="bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5">
-        FlySafe Settings
-      </div>
-      <div class="space-y-4 p-4">
-        <div
-          class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
-        >
-          <div class="object-top-left font-sans">Sound</div>
-          <div class="flex flex-row gap-2">
-            <button
-              onclick="volDown()"
-              class="bg-red-400 p-4 rounded-lg hover:scale-105 transition-all"
-            >
-              -
-            </button>
-            <button
-              class="bg-amber-100 p-4 rounded-lg text-center mx-2"
-              onclick="testAudio()"
-            >
-              Volume:
-              <span id="volDiv">?</span> %
-            </button>
-            <button
-              onclick="volUp()"
-              class="bg-green-400 p-4 rounded-lg hover:scale-105 transition-all"
-            >
-              +
-            </button>
-            <button
-              onclick="changeSpeakMode()"
-              class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
-            >
-              <span id="speakModeDiv">Threshold</span>
-            </button>
-          </div>
-        </div>
-        <div
-          class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
-        >
-          <div class="object-top-left font-sans">Tune</div>
-          <div class="flex flex-row gap-2 mt-2">
-            <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
-              Offset:
-              <span id="offsetDiv">?</span> cm
-            </div>
-            <input
-              type="number"
-              id="offsetInputDiv"
-              class="basis-1/4 rounded-lg p-2 w-full"
-              placeholder="e.g. 134"
-              required
-            />
-            <input
-              type="button"
-              value="Set"
-              onclick="setOffset()"
-              class="bg-amber-100 basis-1/4 p-4 rounded-lg hover:scale-105 transition-all"
-            />
-          </div>
-          <div class="flex flex-row gap-2 mt-2">
-            <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
-              Coef:
-              <span id="coefDiv">?</span>
-            </div>
-            <input
-              type="number"
-              id="coefInputDiv"
-              class="basis-1/4 rounded-lg p-2 w-full"
-              placeholder="e.g. 0.93"
-              required
-            />
-            <input
-              type="button"
-              value="Set"
-              onclick="setCoef()"
-              class="bg-amber-100 basis-1/4 p-4 rounded-lg hover:scale-105 transition-all"
-            />
-          </div>
-        </div>
-        <div
-          class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
-        >
-          <div class="object-top-left font-sans">Misc</div>
+    <div class="bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5">
+      FlySafe Settings
+    </div>
+    <div class="space-y-4 p-4">
+      <div
+        class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
+      >
+        <div class="object-top-left font-sans">Sound</div>
+        <div class="flex flex-row gap-2">
           <button
-            onclick="toggleImperial()"
+            onclick="volDown()"
+            class="bg-red-400 p-4 rounded-lg hover:scale-105 transition-all"
+          >
+            -
+          </button>
+          <button
+            class="bg-amber-100 p-4 rounded-lg text-center mx-2"
+            onclick="testAudio()"
+          >
+            Volume:
+            <span id="volDiv">?</span> %
+          </button>
+          <button
+            onclick="volUp()"
+            class="bg-green-400 p-4 rounded-lg hover:scale-105 transition-all"
+          >
+            +
+          </button>
+          <button
+            onclick="changeSpeakMode()"
             class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
           >
-            <span id="imperialDiv">Imperial</span>
+            <span id="speakModeDiv">Threshold</span>
           </button>
         </div>
+      </div>
+      <div
+        class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
+      >
+        <div class="object-top-left font-sans">Tune</div>
+        <div class="flex flex-row gap-2 mt-2">
+          <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
+            Offset:
+            <span id="offsetDiv">?</span> cm
+          </div>
+          <input
+            type="number"
+            id="offsetInputDiv"
+            class="basis-1/4 rounded-lg p-2 w-full"
+            placeholder="e.g. 134"
+            required
+          />
+          <input
+            type="button"
+            value="Set"
+            onclick="setOffset()"
+            class="bg-amber-100 basis-1/4 p-4 rounded-lg hover:scale-105 transition-all"
+          />
+        </div>
+        <div class="flex flex-row gap-2 mt-2">
+          <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
+            Coef:
+            <span id="coefDiv">?</span>
+          </div>
+          <input
+            type="number"
+            id="coefInputDiv"
+            class="basis-1/4 rounded-lg p-2 w-full"
+            placeholder="e.g. 0.93"
+            required
+          />
+          <input
+            type="button"
+            value="Set"
+            onclick="setCoef()"
+            class="bg-amber-100 basis-1/4 p-4 rounded-lg hover:scale-105 transition-all"
+          />
+        </div>
+      </div>
+      <div
+        class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
+      >
+        <div class="object-top-left font-sans">Misc</div>
+        <button
+          onclick="toggleImperial()"
+          class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
+        >
+          <span id="imperialDiv">Imperial</span>
+        </button>
       </div>
     </div>
     <div id="footer"></div>
