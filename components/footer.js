@@ -2,7 +2,7 @@ const footerHTML = `
 <div class="w-full">
   <section
     id="bottom-navigation"
-    class="block fixed inset-x-0 bottom-0 z-10 bg-gradient-to-br from-sky-300 to-cyan-200 pb-[env(safe-area-inset-bottom)]"
+    class="block fixed inset-x-0 bottom-0 z-10 bg-gradient-to-t from-sky-300 to-cyan-200 pb-[env(safe-area-inset-bottom)]"
   >
     <div id="tabs" class="flex justify-between">
       <a
