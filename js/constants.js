@@ -1,3 +1,5 @@
+console.log("constants.js");
+
 export let repoName = "FlySafe_Dashboard_2";
 
 export let events_ft = [

@@ -1,3 +1,5 @@
+console.log("insights.js");
+
 //load PWA service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {

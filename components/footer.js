@@ -28,7 +28,7 @@ const footerHTML = `
         <span class="tab tab-home block text-xs">Home</span>
       </a>
       <a
-        href="/FlySafe_Dashboard_2/pages/configure_page.html"
+        href="/FlySafe_Dashboard_2/pages/settings_page.html"
         class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
       >
         <svg

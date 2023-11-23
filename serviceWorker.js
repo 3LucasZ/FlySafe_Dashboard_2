@@ -2,14 +2,23 @@ import { repoName } from "js/constants.js";
 
 const cacheName = repoName + Math.floor(Math.random() * 100000000000000); //Local: automatically changes
 //const cacheName = repoName + "v3" //Production: manually change before every commit
+
 const assets = [
   repoName + "/",
+  repoName + "/components/footer.js",
+  repoName + "/images/icons/icon.png",
   repoName + "/index.html",
+  repoName + "/pages/settings_page.html",
+  repoName + "/pages/insights_page.html",
+  repoName + "/pages/help_page.html",
   repoName + "/dist/output.css",
   repoName + "/js/chart.js",
   repoName + "/js/constants.js",
-  repoName + "/js/divs.js",
+  repoName + "/js/help_page.js",
   repoName + "/js/index.js",
+  repoName + "/js/inject.js",
+  repoName + "/js/insights_page.js",
+  repoName + "/js/settings_page.js",
   repoName + "/js/utils.js",
 ];
 

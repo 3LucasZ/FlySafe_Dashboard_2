@@ -1,3 +1,5 @@
+console.log("settings_page.js");
+
 const volDiv = document.getElementById("volDiv");
 const offsetDiv = document.getElementById("offsetDiv");
 const offsetInputDiv = document.getElementById("offsetInputDiv");
@@ -54,7 +56,6 @@ function changeSpeakMode() {
 }
 
 function updImperialUI() {
-  console.log(ls_get("imperial"));
   imperialDiv.innerHTML = ls_get("imperial") == "1" ? "Imperial" : "Metric";
 }
 updImperialUI();
