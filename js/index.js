@@ -17,6 +17,7 @@ const canvasDiv = document.getElementById("canvasDiv");
 const distDiv = document.getElementById("distDiv");
 const distTypeDiv = document.getElementById("distTypeDiv");
 const statusDiv = document.getElementById("statusDiv");
+const recordAvatarDiv = document.getElementById("recordAvatarDiv");
 
 //seed localStorage defaults
 if (ls_get("volume") === null) ls_set("volume", "5");
@@ -74,6 +75,19 @@ function updGraph() {
 }
 updGraph();
 
+//button handlers
+var isRecording = false;
+function updRecordUI() {
+  recordAvatarDiv.className =
+    "bg-red-500 mx-auto " +
+    (isRecording ? "w-10 h-10 rounded-lg" : "w-14 h-14 rounded-full");
+}
+updRecordUI();
+function toggleIsRecording() {
+  isRecording = !isRecording;
+  updRecordUI();
+}
+
 //websocket handler
 var websocket;
 window.onload = (event) => {
@@ -99,7 +113,10 @@ function websocket_connect() {
 function updateStatusUI(connected) {
   statusDiv.innerHTML = connected ? "Connected" : "Not Connected";
   statusDiv.className =
-    "p-4 rounded-lg text-center " + (connected ? "bg-green-300" : "bg-red-300");
+    "p-4 rounded-lg text-center " +
+    (connected
+      ? "bg-gradient-to-br from-green-400 to-green-200"
+      : "bg-gradient-to-br from-red-500 to-red-300");
 }
 function onOpen(evt) {
   console.log("Websocket connected");
