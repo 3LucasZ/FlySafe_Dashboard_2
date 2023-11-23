@@ -8,6 +8,14 @@ function getSeconds() {
   var d = new Date();
   return (d.getTime() - d.setHours(0, 0, 0)) / 1000;
 }
+function getDateFormatted() {
+  const date = new Date();
+  return date.getMonth() + 1 + "_" + date.getDate() + "_" + date.getFullYear();
+}
+function getTimeFormatted() {
+  const date = new Date();
+  return date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
+}
 
 function between(l, x, r) {
   return (l <= x && x <= r) || (r <= x && x <= l);
