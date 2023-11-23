@@ -2476,6 +2476,14 @@ video {
   -webkit-touch-callout: none;
 }
 
+.\[-webkit-user-drag\:none\] {
+  -webkit-user-drag: none;
+}
+
+.\[-webkit-user-select\:none\] {
+  -webkit-user-select: none;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
