@@ -21,153 +21,32 @@
   <body class="font-bold text-xl">
     <div class="text-center p-5">FlySafe Dashboard</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-      <!--Top Left-->
-      <div class="rounded shadow-lg bg-blue p-5">
-        <div class="object-top-left font-sans">FlySafe Module:</div>
-        <div class="grid grid-cols-2 gap-2">
-          <button
-            onclick="connectBLE()"
-            class="bg-green p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            Connect
-          </button>
-          <button
-            onclick="disconnectBLE()"
-            class="bg-red p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            Disconnect
-          </button>
+    <div class="gap-4 p-4">
+      <div class="grid grid-cols-8 gap-4">
+        <div
+          class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5 col-span-3"
+        >
           <button
             onclick="reboot()"
             class="bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
           >
             Reboot
           </button>
-          <!-- Frequently changed by js, be careful-->
-          <div id="statusDiv" class="bg-red p-4 rounded-lg text-center">
+          <div
+            id="statusDiv"
+            class="bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg text-center"
+          >
             Not Connected
           </div>
         </div>
-      </div>
-      <!--Top Right-->
-      <div class="rounded shadow-lg bg-blue p-5">
-        <div class="object-top-left font-sans">Configure:</div>
-        <div class="flex flex-row gap-2">
-          <button
-            onclick="volDown()"
-            class="bg-red p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            -
-          </button>
-          <button
-            class="bg-yellow p-4 rounded-lg text-center mx-2"
-            onclick="testAudio()"
-          >
-            Volume:
-            <span id="volDiv">?</span> %
-          </button>
-          <button
-            onclick="volUp()"
-            class="bg-green p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            +
-          </button>
-          <button
-            onclick="changeSpeakMode()"
-            class="bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            <span id="speakModeDiv">Threshold</span>
-          </button>
-          <button
-            onclick="toggleImperial()"
-            class="bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            <span id="imperialDiv">Imperial</span>
-          </button>
-
-          <!-- <button
-            onclick="testAudio()"
-            class="bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            Test
-          </button>
-          <button
-            onclick="test2Audio()"
-            class="bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
-          >
-            Test2
-          </button> -->
-        </div>
-        <div class="flex flex-row gap-2 mt-2">
-          <div class="basis-1/2 bg-yellow p-4 rounded-lg text-center">
-            Offset:
-            <span id="offsetDiv">?</span> cm
-          </div>
-          <input
-            type="number"
-            id="offsetInputDiv"
-            class="basis-1/4 rounded-lg p-2 w-full"
-            placeholder="e.g. 134"
-            required
-          />
-          <input
-            type="button"
-            value="Set"
-            onclick="setOffset()"
-            class="basis-1/4 bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
-          />
-        </div>
-        <div class="flex flex-row gap-2 mt-2">
-          <div class="basis-1/2 bg-yellow p-4 rounded-lg text-center">
-            Coef:
-            <span id="coefDiv">?</span>
-          </div>
-          <input
-            type="number"
-            id="coefInputDiv"
-            class="basis-1/4 rounded-lg p-2 w-full"
-            placeholder="e.g. 0.974"
-            required
-          />
-          <input
-            type="button"
-            value="Set"
-            onclick="setCoef()"
-            class="basis-1/4 bg-yellow p-4 rounded-lg hover:scale-105 transition-all"
-          />
-        </div>
-      </div>
-      <!--Bottom Left-->
-      <div class="rounded shadow-lg bg-blue p-5">
-        <div>AGL Altitude:</div>
-        <div>
-          <span class="text-7xl" id="distDiv">?</span>
+        <div
+          class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5 col-span-5 text-center"
+        >
+          <span class="text-9xl" id="distDiv">?</span>
           <span class="text-2xl" id="distTypeDiv">feet</span>
         </div>
-        <button
-          id="downloadBtn"
-          onclick="downloadFlightData()"
-          class="bg-yellow p-4 mt-2 rounded-lg hover:scale-105 transition-all"
-        >
-          <!-- onclick is defined in js -->
-          Download
-        </button>
-        <a
-          id="secretDiv"
-          href="https://www.google-analytics.com/analytics.js"
-          download="file"
-        >
-          Secret
-        </a>
-        <a href="https://google.com">GOOGLE_HTTPS</a>
-        <a href="http://usaco.org">GOOGLE_HTTP</a>
-        <a href="https://www.google-analytics.com/analytics.js" download="file"
-          >download the google analytics javascript file with a tag
-        </a>
-        <button onclick="abc()">lucas</button>
       </div>
-      <!--Bottom Right-->
+
       <div class="rounded shadow-lg" style="height: 40vh">
         <canvas id="canvasDiv"></canvas>
       </div>

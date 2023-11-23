@@ -1,3 +1,4 @@
+//load PWA service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker
@@ -8,37 +9,18 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.log("service worker not registered", err));
   });
 }
+//seed localStorage defaults
+if (ls_get("volume") === null) ls_set("volume", "5");
+if (ls_get("speakMode") === null) ls_set("speakMode", "0");
+if (ls_get("offset") === null) ls_set("offset", "0");
+if (ls_get("coef") === null) ls_set("coef", "1");
+if (ls_get("imperial") === null) ls_set("imperial", "true");
 
-// //running variables
-var dists = [0];
-var distsImperial = [0];
-var cnts = [0];
-// var curVol = localStorage.getItem("volume");
-// if (curVol === null) curVol = 100;
-// else curVol = parseInt(curVol);
-// console.log("curVol", curVol);
-// var curOffset = localStorage.getItem("offset");
-// if (curOffset === null) curOffset = 0;
-// else curOffset = parseInt(curOffset);
-// console.log("curOffset", curOffset);
-// var curCoef = localStorage.getItem("coef");
-// if (curCoef === null) curCoef = 1;
-// else curCoef = parseInt(curCoef);
-// console.log("curCoef", curCoef);
-// var curSpeakMode = localStorage.getItem("speakMode");
-// if (curSpeakMode === null) curSpeakMode = 0;
-// else curSpeakMode = parseInt(curSpeakMode);
-var curImperial = localStorage.getItem("imperial");
-if (curImperial === null) curImperial = true;
-else curImperial = curImperial === "true";
-console.log("curImperial", curImperial);
-// var curReboot = 1;
-// console.log("curReboot", curReboot);
-// var lastValue = 1000;
-// // var noSpeak = false;
-// // var thresh = 3000;
+//running variables
+var distsM = [];
+var times = [];
 
-// //init display
+//init display
 // volDiv.innerHTML = curVol;
 // offsetDiv.innerHTML = curOffset;
 // if (curSpeakMode == 0) speakModeDiv.innerHTML = "Threshold";
@@ -46,31 +28,6 @@ console.log("curImperial", curImperial);
 // else speakModeDiv.innerHTML = "Periodic";
 // imperialDiv.innerHTML = curImperial ? "Imperial" : "Metric";
 // distTypeDiv.innerHTML = curImperial ? "feet" : "meters";
-var chart = new Chart(canvasDiv, {
-  type: "line",
-  data: {
-    labels: cnts,
-    datasets: [
-      {
-        label: "AGL Altitude (" + (curImperial ? "ft" : "m") + ")",
-        data: curImperial ? distsImperial : dists,
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    animation: {
-      duration: 0,
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
-});
 
 // function updateGraphDisplay(newDist) {
 //   dists.push(newDist);
@@ -83,34 +40,36 @@ var chart = new Chart(canvasDiv, {
 //   }
 //   reGraph();
 // }
-// function reGraph() {
-//   chart.destroy();
-//   chart = new Chart(canvasDiv, {
-//     type: "line",
-//     data: {
-//       labels: cnts,
-//       datasets: [
-//         {
-//           label: "AGL Altitude (" + (curImperial ? "ft" : "m") + ")",
-//           data: curImperial ? distsImperial : dists,
-//           borderWidth: 1,
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       animation: {
-//         duration: 0,
-//       },
-//       scales: {
-//         y: {
-//           beginAtZero: true,
-//         },
-//       },
-//     },
-//   });
-// }
+var chart = new Chart(canvasDiv);
+function createGraph() {
+  chart.destroy();
+  chart = new Chart(canvasDiv, {
+    type: "line",
+    data: {
+      labels: times,
+      datasets: [
+        {
+          label: "AGL Altitude (" + (ls_get("imperial") ? "ft" : "m") + ")",
+          data: ls_get("imperial") ? distsM : distsM.map(mToFt),
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 0,
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+createGraph();
 
 // //set up BLE
 // const SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";

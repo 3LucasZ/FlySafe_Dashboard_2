@@ -39,8 +39,14 @@ function download(fileContent, fileName) {
   //a.click();
   //window.URL.revokeObjectURL(url);
 }
-
 function downloadFlightData() {
   var content = "hello world";
   download(content, "flight_data.txt");
+}
+
+function ls_get(key) {
+  return localStorage.getItem(key);
+}
+function ls_set(key, value) {
+  localStorage.setItem(key, value);
 }
