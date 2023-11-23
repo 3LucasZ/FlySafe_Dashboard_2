@@ -1,9 +1,9 @@
 console.log("utils.js");
-
+//convert
 function mToFt(x) {
   return x * 3.28084;
 }
-
+//get date time
 function getSeconds() {
   var d = new Date();
   return (d.getTime() - d.setHours(0, 0, 0)) / 1000;
@@ -16,11 +16,38 @@ function getTimeFormatted() {
   const date = new Date();
   return date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
 }
-
+function getMomentFormatted() {
+  return (
+    getDateFormatted() +
+    "_" +
+    getTimeFormatted() +
+    "_" +
+    new Date().getMilliseconds()
+  );
+}
+//utility
 function between(l, x, r) {
   return (l <= x && x <= r) || (r <= x && x <= l);
 }
-
+class CSVBuilder {
+  constructor(headers) {
+    this.entries = [headers];
+  }
+  addEntry(entry) {
+    if (entry.length != this.entries[0].length) {
+      throw "Header length does not match entry length";
+    } else {
+      this.entries.push(entry);
+    }
+  }
+  getContent() {
+    return this.entries.join("\n");
+  }
+  getDownloadLink() {
+    return "data:text/csv;charset=utf-8," + encodeURI(this.getContent());
+  }
+}
+//sound
 function synth(str, vol) {
   var msg = new SpeechSynthesisUtterance();
   msg.text = str;
@@ -31,6 +58,11 @@ function synth(str, vol) {
 
 function rng(mx) {
   return Math.floor(Math.random() * mx);
+}
+
+function createFile(fileName, fileContent) {
+  const createFileWorker = new Worker("createFileWorker.js");
+  createFileWorker.postMessage([fileName, fileContent]);
 }
 
 function download(fileContent, fileName) {
