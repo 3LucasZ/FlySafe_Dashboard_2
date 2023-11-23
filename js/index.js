@@ -9,39 +9,39 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.log("service worker not registered", err));
   });
 }
+
+//divs
+const canvasDiv = document.getElementById("canvasDiv");
+const distDiv = document.getElementById("distDiv");
+const distTypeDiv = document.getElementById("distTypeDiv");
+const statusDiv = document.getElementById("statusDiv");
+
 //seed localStorage defaults
 if (ls_get("volume") === null) ls_set("volume", "5");
 if (ls_get("speakMode") === null) ls_set("speakMode", "0");
 if (ls_get("offset") === null) ls_set("offset", "0");
 if (ls_get("coef") === null) ls_set("coef", "1");
-if (ls_get("imperial") === null) ls_set("imperial", "true");
+if (ls_get("imperial") === null) ls_set("imperial", "1");
 
 //running variables
 var distsM = [];
 var times = [];
 
 //init display
-// volDiv.innerHTML = curVol;
-// offsetDiv.innerHTML = curOffset;
-// if (curSpeakMode == 0) speakModeDiv.innerHTML = "Threshold";
-// else if (curSpeakMode == 1) speakModeDiv.innerHTML = "Pitch";
-// else speakModeDiv.innerHTML = "Periodic";
-// imperialDiv.innerHTML = curImperial ? "Imperial" : "Metric";
-// distTypeDiv.innerHTML = curImperial ? "feet" : "meters";
+distTypeDiv.innerHTML = ls_get("imperial") == "1" ? "meters" : "feet";
 
-// function updateGraphDisplay(newDist) {
-//   dists.push(newDist);
-//   distsImperial.push(newDist * 3.28084);
-//   cnts.push(cnts[cnts.length - 1] + 1);
-//   if (cnts.length > 10) {
-//     dists.shift();
-//     distsImperial.shift();
-//     cnts.shift();
-//   }
-//   reGraph();
-// }
+//graph handler
+function appendGraph(newDistM) {
+  distsM.push(newDistM);
+  times.push(getSeconds());
+  if (times.length > 25) {
+    distsM.shift();
+    times.shift();
+  }
+  reGraph();
+}
 var chart = new Chart(canvasDiv);
-function createGraph() {
+function updGraph() {
   chart.destroy();
   chart = new Chart(canvasDiv, {
     type: "line",
@@ -49,8 +49,9 @@ function createGraph() {
       labels: times,
       datasets: [
         {
-          label: "AGL Altitude (" + (ls_get("imperial") ? "ft" : "m") + ")",
-          data: ls_get("imperial") ? distsM : distsM.map(mToFt),
+          label:
+            "AGL Altitude (" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
+          data: ls_get("imperial") == "1" ? distsM.map(mToFt) : distsM,
           borderWidth: 1,
         },
       ],
@@ -69,7 +70,7 @@ function createGraph() {
     },
   });
 }
-createGraph();
+updGraph();
 
 // //set up BLE
 // const SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
