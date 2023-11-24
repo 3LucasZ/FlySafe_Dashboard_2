@@ -1,4 +1,4 @@
-console.log("insights.js");
+console.log("index.js");
 
 //load PWA service worker
 if ("serviceWorker" in navigator) {
@@ -29,6 +29,8 @@ if (ls_get("imperial") === null) ls_set("imperial", "1");
 //running variables
 var preT = 0; //seconds
 var preY = 0; //meters
+var preSayT = 0; //seconds
+var preSayY = 0; //meters
 var recT = []; //seconds
 var recY = []; //meters
 var recDy = []; //meters/second
@@ -55,6 +57,24 @@ function handleNewY(newCm) {
   updGraph(t, y, dy);
   preT = t;
   preY = y;
+  //voiceover
+  if (ls_get("imperial") === "1") y = mToFt(y);
+  if (t - preSayT > 1) {
+    if (ls_get("speakMode") === "0") {
+      var callout;
+      for (x in preSayY < y ? events_ft_seed : events_ft.slice().reverse()) {
+        if (between(preSayY, x, y)) {
+          callout = x;
+        }
+      }
+      console.log(callout);
+      if (callout !== null && callout !== undefined) say(callout);
+    } else if (ls_get("speakMode") === "1") {
+      sayNum(y);
+    }
+    preSayY = y;
+    preSayT = t;
+  }
 }
 
 //graph handler
@@ -64,7 +84,7 @@ var chart = new Chart(canvasDiv, {
     labels: new Array(25).fill(""),
     datasets: [
       {
-        label: "altitude(" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
+        label: "altitude(" + (ls_get("imperial") == "1" ? "ft" : "m") + ")",
         data: new Array(25).fill(0),
         borderWidth: 3,
         cubicInterpolationMode: "monotone",
@@ -72,8 +92,7 @@ var chart = new Chart(canvasDiv, {
         yAxisID: "y1",
       },
       {
-        label:
-          "descent speed(" + (ls_get("imperial") == "1" ? "m" : "ft") + "/s)",
+        label: "descent(" + (ls_get("imperial") == "1" ? "ft" : "m") + "/s)",
         data: new Array(25).fill(0),
         borderWidth: 1,
         cubicInterpolationMode: "monotone",

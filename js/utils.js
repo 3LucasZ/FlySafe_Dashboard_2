@@ -59,10 +59,18 @@ function csvToJs(csv) {
   return rows.map((row) => row.split(","));
 }
 //sound
-function synth(str, vol) {
+function sayNum(num) {
+  num = num.toPrecision(2);
+  if (num < 1) {
+    say(("" + num).substring(1));
+  } else {
+    say("" + num);
+  }
+}
+function say(str) {
   var msg = new SpeechSynthesisUtterance();
   msg.text = str;
-  msg.volume = vol / 100;
+  msg.volume = (Number(ls_get("volume")) * 20) / 100;
   window.speechSynthesis.cancel(); // !!! clear q
   window.speechSynthesis.speak(msg);
 }

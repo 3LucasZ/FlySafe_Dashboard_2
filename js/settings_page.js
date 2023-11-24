@@ -46,12 +46,11 @@ function setCoef() {
 
 function updSpeakerModeUI() {
   if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
-  else if (ls_get("speakMode") == 1) speakModeDiv.innerHTML = "Pitch";
-  else speakModeDiv.innerHTML = "Periodic";
+  else if (ls_get("speakMode") == "1") speakModeDiv.innerHTML = "Periodic";
 }
 updSpeakerModeUI();
 function changeSpeakMode() {
-  ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 3));
+  ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
   updSpeakerModeUI();
 }
 
