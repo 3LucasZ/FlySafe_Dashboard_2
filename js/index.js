@@ -82,26 +82,7 @@ var chart = new Chart(canvasDiv, {
       },
     ],
   },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    animation: {
-      duration: 0,
-    },
-    scales: {
-      y1: {
-        position: "left",
-        beginAtZero: true,
-      },
-      y2: {
-        position: "right",
-        beginAtZero: true,
-        grid: {
-          drawOnChartArea: false,
-        },
-      },
-    },
-  },
+  options: graphOptions,
 });
 function updGraph(t, y, dy) {
   // chart.data.labels.push(t);

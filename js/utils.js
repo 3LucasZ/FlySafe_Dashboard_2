@@ -29,10 +29,13 @@ function getMomentFormatted() {
     new Date().getMilliseconds()
   );
 }
+
 //utility
 function between(l, x, r) {
   return (l <= x && x <= r) || (r <= x && x <= l);
 }
+
+//CSV
 class CSVBuilder {
   constructor(headers) {
     this.entries = [headers];
@@ -51,6 +54,10 @@ class CSVBuilder {
     return "data:text/csv;charset=utf-8," + encodeURI(this.getContent());
   }
 }
+function csvToJs(csv) {
+  rows = csv.split("\n");
+  return rows.map((row) => row.split(","));
+}
 //sound
 function synth(str, vol) {
   var msg = new SpeechSynthesisUtterance();
@@ -60,36 +67,17 @@ function synth(str, vol) {
   window.speechSynthesis.speak(msg);
 }
 
+//rng
 function rng(mx) {
   return Math.floor(Math.random() * mx);
 }
 
+//files
 function createFile(fileName, fileContent) {
   const createFileWorker = new Worker(
     "/FlySafe_Dashboard_2/js/createFileWorker.js"
   );
   createFileWorker.postMessage([fileName, fileContent]);
-}
-
-function download(fileContent, fileName) {
-  var file = new File(["\ufeff" + fileContent], fileName, {
-    type: "text/plain:charset=UTF-8",
-  });
-  url = window.URL.createObjectURL(file);
-  console.log(file);
-  console.log(url);
-
-  //a.style = "display: none";
-  secretDiv.href = url;
-  logsDiv.innerHTML =
-    url + " | " + fileContent + " | " + file.webkitRelativePath;
-  //secretDiv.download = file.name;
-  //a.click();
-  //window.URL.revokeObjectURL(url);
-}
-function downloadFlightData() {
-  var content = "hello world";
-  download(content, "flight_data.txt");
 }
 
 function ls_get(key) {

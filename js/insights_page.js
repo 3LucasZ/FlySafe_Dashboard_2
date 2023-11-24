@@ -39,6 +39,7 @@ function createWidget(fileName, fileContent) {
   var body = document.createElement("div");
   body.className = "col-span-6";
   //graph
+  body.appendChild(createChart(fileContent));
   //filename
   var fileNameDiv = document.createElement("div");
   fileNameDiv.innerHTML = fileName + " " + fileContent;
@@ -58,34 +59,35 @@ function createWidget(fileName, fileContent) {
   //ret
   return widgetDiv;
 }
-function createChart() {
-  var chartDiv = document.createElement("canvas");
-  var chart = new Chart(canvasDiv);
-  chart.destroy();
-  chart = new Chart(canvasDiv, {
+function createChart(csv) {
+  data = csvToJs(csv);
+  var canvasDiv = document.createElement("canvas");
+  newOptions = graphOptions;
+  newOptions.legend = { display: false };
+  var chart = new Chart(canvasDiv, {
     type: "line",
     data: {
-      labels: times,
+      labels: new Array(25).fill(""),
       datasets: [
         {
-          label: "altitude(" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
-          data: ls_get("imperial") == "1" ? distsM.map(mToFt) : distsM,
+          label: data[0][1],
+          data: data.map((entry) => entry[1]),
+          borderWidth: 3,
+          cubicInterpolationMode: "monotone",
+          pointStyle: false,
+          yAxisID: "y1",
+        },
+        {
+          label: data[0][2],
+          data: data.map((entry) => entry[2]),
           borderWidth: 1,
+          cubicInterpolationMode: "monotone",
+          pointStyle: false,
+          yAxisID: "y2",
         },
       ],
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: {
-        duration: 0,
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
+    options: newOptions,
   });
-  return chartDiv;
+  return canvasDiv;
 }
