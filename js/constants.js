@@ -28,3 +28,32 @@ const graphOptions = {
   },
   plugins: {},
 };
+const miniGraphOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  animation: {
+    duration: 0,
+  },
+  scales: {
+    y1: {
+      position: "left",
+      beginAtZero: true,
+      grid: {
+        drawOnChartArea: false,
+      },
+      display: false,
+    },
+    y2: {
+      position: "right",
+      beginAtZero: true,
+      grid: {
+        drawOnChartArea: false,
+      },
+      display: false,
+    },
+    x: {
+      display: false,
+    },
+  },
+  plugins: { legend: { display: false } },
+};
