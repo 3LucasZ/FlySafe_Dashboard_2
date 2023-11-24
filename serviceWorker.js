@@ -1,6 +1,5 @@
-import { repoName } from "js/constants.js";
-
-const cacheName = repoName + Math.floor(Math.random() * 100000000000000); //Local: automatically changes
+const repoName = "/FlySafe_Dashboard_2";
+const cacheName = "cache_" + Math.floor(Math.random() * 100000000000000); //Local: automatically changes
 //const cacheName = repoName + "v3" //Production: manually change before every commit
 
 const assets = [

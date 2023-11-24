@@ -4,8 +4,8 @@ console.log("insights.js");
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker
-      .register("/ClientServerTesters/serviceWorker.js", {
-        scope: "/ClientServerTesters/",
+      .register("/FlySafe_Dashboard_2/serviceWorker.js", {
+        scope: "/FlySafe_Dashboard_2/",
       })
       .then((res) => console.log("service worker registered"))
       .catch((err) => console.log("service worker not registered", err));
