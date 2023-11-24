@@ -27,59 +27,91 @@ if (ls_get("coef") === null) ls_set("coef", "1");
 if (ls_get("imperial") === null) ls_set("imperial", "1");
 
 //running variables
-var distsM = [];
-var times = [];
-var recordDists = [];
-var recordTimes = [];
+var preT = 0; //seconds
+var preY = 0; //meters
+var recT = []; //seconds
+var recY = []; //meters
+var recDy = []; //meters/second
 
 //init display
-distTypeDiv.innerHTML = ls_get("imperial") == "1" ? "meters" : "feet";
+distTypeDiv.innerHTML = ls_get("imperial") == "1" ? "feet" : "meters";
+
+//newY handler
+function handleNewY(newCm) {
+  y = newCm / 100;
+  //upd distDiv
+  distDiv.innerHTML =
+    ls_get("imperial") == "1" ? mToFt(y).toFixed(1) : y.toFixed(2);
+  //calc new
+  t = getSecondsDeep();
+  y = y;
+  dy = preT == 0 ? 0 : (y - preY) / (t - preT);
+
+  if (isRecording) {
+    recT.push(t);
+    recY.push(y);
+    recDy.push(dy);
+  }
+  updGraph(t, y, dy);
+  preT = t;
+  preY = y;
+}
 
 //graph handler
-function appendGraph(newDistM) {
-  distsM.push(newDistM);
-  times.push(getSeconds());
-  if (isRecording) {
-    recordDists.push(newDistM);
-    recordTimes.push(getSeconds());
-  }
-  if (times.length > 25) {
-    distsM.shift();
-    times.shift();
-  }
-  updGraph();
-}
-var chart = new Chart(canvasDiv);
-function updGraph() {
-  chart.destroy();
-  chart = new Chart(canvasDiv, {
-    type: "line",
-    data: {
-      labels: times,
-      datasets: [
-        {
-          label:
-            "AGL Altitude (" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
-          data: ls_get("imperial") == "1" ? distsM.map(mToFt) : distsM,
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: {
-        duration: 0,
+var chart = new Chart(canvasDiv, {
+  type: "line",
+  data: {
+    labels: new Array(25).fill(""),
+    datasets: [
+      {
+        label: "altitude(" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
+        data: new Array(25).fill(0),
+        borderWidth: 3,
+        cubicInterpolationMode: "monotone",
+        pointStyle: false,
+        yAxisID: "y1",
       },
-      scales: {
-        y: {
-          beginAtZero: true,
+      {
+        label:
+          "descent speed(" + (ls_get("imperial") == "1" ? "m" : "ft") + "/s)",
+        data: new Array(25).fill(0),
+        borderWidth: 1,
+        cubicInterpolationMode: "monotone",
+        pointStyle: false,
+        yAxisID: "y2",
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: {
+      duration: 0,
+    },
+    scales: {
+      y1: {
+        position: "left",
+        beginAtZero: true,
+      },
+      y2: {
+        position: "right",
+        beginAtZero: true,
+        grid: {
+          drawOnChartArea: false,
         },
       },
     },
-  });
+  },
+});
+function updGraph(t, y, dy) {
+  // chart.data.labels.push(t);
+  chart.data.datasets[0].data.push(y);
+  chart.data.datasets[1].data.push(dy);
+  // chart.data.labels.shift();
+  chart.data.datasets[0].data.shift();
+  chart.data.datasets[1].data.shift();
+  chart.update();
 }
-updGraph();
 
 //button handlers
 var isRecording = false;
@@ -93,17 +125,13 @@ async function toggleIsRecording() {
   isRecording = !isRecording;
   if (!isRecording) {
     const cb = new CSVBuilder(["time(s)", "altitude(ft)", "descent(ft/s)"]);
-    for (const i of Array(recordDists.length).keys()) {
-      dy =
-        i > 0
-          ? (recordDists[i] - recordDists[i - 1]) /
-            (recordTimes[i] - recordTimes[i - 1])
-          : 0;
-      cb.addEntry([recordTimes[i], recordDists[i], dy]);
+    for (const i of Array(recY.length).keys()) {
+      cb.addEntry([recT[i], recY[i], recDy[i]]);
     }
     createFile(getMomentFormatted(), cb.getContent());
-    recordDists = [];
-    recordTimes = [];
+    recT = [];
+    recY = [];
+    recDy = [];
   }
   updRecordUI();
 }
@@ -148,9 +176,8 @@ function onClose(evt) {
   websocket_connect();
 }
 function onMessage(evt) {
-  console.log(evt.data);
-  distDiv.innerHTML = evt.data;
-  appendGraph(evt.data);
+  console.log("WS Received: " + evt.data);
+  handleNewY(evt.data);
 }
 function onError(evt) {
   console.log(evt.data);
