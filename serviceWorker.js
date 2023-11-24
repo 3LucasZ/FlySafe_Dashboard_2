@@ -1,4 +1,5 @@
 const repoName = "/FlySafe_Dashboard_2";
+
 const cacheName = "cache_" + Math.floor(Math.random() * 100000000000000); //Local: automatically changes
 //const cacheName = repoName + "v3" //Production: manually change before every commit
 
@@ -13,6 +14,7 @@ const assets = [
   repoName + "/dist/output.css",
   repoName + "/js/chart.js",
   repoName + "/js/constants.js",
+  repoName + "/js/createFileWorker.js",
   repoName + "/js/help_page.js",
   repoName + "/js/index.js",
   repoName + "/js/inject.js",
