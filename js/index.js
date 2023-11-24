@@ -139,6 +139,7 @@ async function toggleIsRecording() {
 //websocket handler
 var websocket;
 window.onload = (event) => {
+  console.log("onload");
   websocket_connect();
 };
 function websocket_connect() {
