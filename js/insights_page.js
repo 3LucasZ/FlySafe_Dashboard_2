@@ -17,6 +17,7 @@ window.onload = async (event) => {
 
 function createWidget(fileName, fileContent) {
   var widgetDiv = document.createElement("div");
+  widgetDiv.className = "bg-blue-300";
   widgetDiv.innerHTML = fileName + " " + fileContent;
   return widgetDiv;
 }

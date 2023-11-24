@@ -27,11 +27,16 @@
     <!--TAILWIND-->
     <link href="/FlySafe_Dashboard_2/dist/output.css" rel="stylesheet" />
   </head>
-  <body class="font-bold text-xl overflow-clip select-none">
-    <div class="bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5">
+  <body class="font-bold text-xl select-none overflow-hidden">
+    <div
+      class="bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5 fixed w-full h-120"
+    >
       FlySafe Insights
     </div>
-    <div id="widgetListDiv"></div>
+    <div
+      id="widgetListDiv"
+      class="pt-20 pb-20 grid grid-cols-1 gap-4 overflow-auto absolute"
+    ></div>
     <div id="footer"></div>
   </body>
   <script src="/FlySafe_Dashboard_2/js/utils.js"></script>
