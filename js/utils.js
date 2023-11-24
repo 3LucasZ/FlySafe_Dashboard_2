@@ -61,7 +61,9 @@ function rng(mx) {
 }
 
 function createFile(fileName, fileContent) {
-  const createFileWorker = new Worker("createFileWorker.js");
+  const createFileWorker = new Worker(
+    "/FlySafe_Dashboard_2/js/createFileWorker.js"
+  );
   createFileWorker.postMessage([fileName, fileContent]);
 }
 

@@ -2679,6 +2679,18 @@ video {
   bottom: calc(7 + env(safe-area-inset-bottom));
 }
 
+.\[bottom\:7\] {
+  bottom: 7;
+}
+
+.\[bottom\:6\] {
+  bottom: 6;
+}
+
+.\[bottom\:calc\(24px\+env\(safe-area-inset-bottom\)\)\] {
+  bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

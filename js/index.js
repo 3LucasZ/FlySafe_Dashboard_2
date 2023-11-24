@@ -29,6 +29,8 @@ if (ls_get("imperial") === null) ls_set("imperial", "1");
 //running variables
 var distsM = [];
 var times = [];
+var recordDists = [];
+var recordTimes = [];
 
 //init display
 distTypeDiv.innerHTML = ls_get("imperial") == "1" ? "meters" : "feet";
@@ -37,6 +39,10 @@ distTypeDiv.innerHTML = ls_get("imperial") == "1" ? "meters" : "feet";
 function appendGraph(newDistM) {
   distsM.push(newDistM);
   times.push(getSeconds());
+  if (isRecording) {
+    recordDists.push(newDistM);
+    recordTimes.push(getSeconds());
+  }
   if (times.length > 25) {
     distsM.shift();
     times.shift();
@@ -83,8 +89,22 @@ function updRecordUI() {
     (isRecording ? "w-10 h-10 rounded-lg" : "w-14 h-14 rounded-full");
 }
 updRecordUI();
-function toggleIsRecording() {
+async function toggleIsRecording() {
   isRecording = !isRecording;
+  if (!isRecording) {
+    const cb = new CSVBuilder(["time(s)", "altitude(ft)", "descent(ft/s)"]);
+    for (const i of Array(recordDists.length).keys()) {
+      dy =
+        i > 0
+          ? (recordDists[i] - recordDists[i - 1]) /
+            (recordTimes[i] - recordTimes[i - 1])
+          : 0;
+      cb.addEntry([recordTimes[i], recordDists[i], dy]);
+    }
+    createFile(getMomentFormatted(), cb.getContent());
+    recordDists = [];
+    recordTimes = [];
+  }
   updRecordUI();
 }
 
