@@ -11,6 +11,9 @@ async function createWidgets() {
     widget = createWidget(name, content);
     widgetListDiv.appendChild(widget);
   }
+  [...widgetListDiv.children]
+    .sort((a, b) => (a.id < b.id ? 1 : -1))
+    .forEach((node) => widgetListDiv.appendChild(node));
 }
 window.onload = async (event) => {
   await createWidgets();
@@ -49,6 +52,7 @@ function createWidget(fileName, fileContent) {
   var widgetDiv = document.createElement("div");
   widgetDiv.className =
     "bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-1 my-5 w-full h-40";
+  widgetDiv.id = fileName;
   //topbar
   var topDiv = document.createElement("div");
   topDiv.className = "flex justify-between mb-1";
