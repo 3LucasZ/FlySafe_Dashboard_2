@@ -858,6 +858,10 @@ video {
   height: 100%;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .w-10 {
   width: 2.5rem;
 }

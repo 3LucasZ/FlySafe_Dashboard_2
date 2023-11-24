@@ -98,3 +98,14 @@ function ls_get(key) {
 function ls_set(key, value) {
   localStorage.setItem(key, value);
 }
+
+//cache
+function removeAllCaches() {
+  console.log("removing all caches:");
+  caches.keys().then(function (names) {
+    for (let name of names) {
+      caches.delete(name);
+      console.log("removed:", name);
+    }
+  });
+}

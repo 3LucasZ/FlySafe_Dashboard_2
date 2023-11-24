@@ -182,6 +182,3 @@ function onMessage(evt) {
 function onError(evt) {
   console.log(evt.data);
 }
-
-// const fileHandle = await opfsRoot
-//     .getFileHandle('my first file', {create: true});

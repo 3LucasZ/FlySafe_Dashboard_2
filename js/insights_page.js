@@ -27,6 +27,7 @@ function createWidget(fileName, fileContent) {
   downloadBtn.onclick = async () => {
     const secret = document.createElement("a");
     secret.href = "data:text/csv;charset=utf-8," + fileContent;
+    secret.download = fileName;
     document.body.appendChild(secret);
     secret.click();
     secret.remove();
@@ -67,8 +68,7 @@ function createChart() {
       labels: times,
       datasets: [
         {
-          label:
-            "AGL Altitude (" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
+          label: "altitude(" + (ls_get("imperial") == "1" ? "m" : "ft") + ")",
           data: ls_get("imperial") == "1" ? distsM.map(mToFt) : distsM,
           borderWidth: 1,
         },
