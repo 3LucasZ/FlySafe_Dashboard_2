@@ -26,4 +26,5 @@ const graphOptions = {
       },
     },
   },
+  plugins: {},
 };

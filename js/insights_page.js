@@ -20,7 +20,7 @@ function createWidget(fileName, fileContent) {
   //widgetDiv
   var widgetDiv = document.createElement("div");
   widgetDiv.className =
-    "bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5 my-5 flex flex-row justify-between w-full h-24 p-0";
+    "bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-2 my-5 flex flex-row justify-between w-full h-40";
   //downloadBtn
   var downloadBtn = document.createElement("button");
   downloadBtn.className = "bg-amber-100 col-span-1 h-full p-2";
@@ -62,8 +62,9 @@ function createWidget(fileName, fileContent) {
 function createChart(csv) {
   data = csvToJs(csv);
   var canvasDiv = document.createElement("canvas");
+  canvasDiv.className = "h-full bg-white rounded";
   newOptions = graphOptions;
-  newOptions.legend = { display: false };
+  newOptions.plugins.legend = { display: false };
   var chart = new Chart(canvasDiv, {
     type: "line",
     data: {
