@@ -121,7 +121,7 @@ function updRecordUI() {
     ? "avatar-container glow-fx"
     : "avatar-container";
 }
-updRecordUI();
+// updRecordUI(); we will set this one manually in html!
 async function toggleIsRecording() {
   isRecording = !isRecording;
   if (!isRecording) {
