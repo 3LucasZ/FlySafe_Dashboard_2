@@ -69,7 +69,6 @@ function handleNewY(newCm) {
           callout = x;
         }
       }
-      console.log(callout);
       if (callout !== null && callout !== undefined) {
         //threshold was hit
         say(callout);
@@ -148,9 +147,17 @@ async function toggleIsRecording() {
 var websocket;
 window.onload = (event) => {
   console.log("onload");
-  websocket_connect();
+  ws_connect();
+  var stalkLoop = setInterval(stalk, 7500);
 };
-function websocket_connect() {
+function stalk() {
+  console.log("stalk");
+  if (getSecondsDeep() - preT > 0.987) {
+    ws_disconnect();
+    ws_connect();
+  }
+}
+function ws_connect() {
   const url = "wss://192.168.4.1/ws";
   console.log("Connecting to:", url);
   websocket = new WebSocket(url);
@@ -182,7 +189,6 @@ function onOpen(evt) {
 function onClose(evt) {
   console.log("Websocket disconnected");
   updateStatusUI(false);
-  websocket_connect();
 }
 function onMessage(evt) {
   console.log("WS Received: " + evt.data);
