@@ -203,7 +203,14 @@ function ws_disconnect() {
   updateStatusUI(false);
 }
 //misc
-function reboot() {}
+async function reboot() {
+  console.log("Rebooting the ESP");
+  try {
+    const req = await fetch("https://192.168.4.1/reboot", { method: "POST" });
+  } catch (error) {
+    console.log(error);
+  }
+}
 function refresh() {
   location.reload();
 }
