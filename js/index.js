@@ -200,6 +200,7 @@ function onError(evt) {
 function ws_disconnect() {
   console.log("Manually disconnected websocket");
   websocket.close();
+  updateStatusUI(false);
 }
 //misc
 function reboot() {}
