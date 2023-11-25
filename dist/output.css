@@ -2029,6 +2029,10 @@ video {
   padding: 1.25rem;
 }
 
+.p-24 {
+  padding: 6rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;

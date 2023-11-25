@@ -184,3 +184,12 @@ function onMessage(evt) {
 function onError(evt) {
   console.log(evt.data);
 }
+function ws_disconnect() {
+  console.log("Manually disconnected websocket");
+  websocket.close();
+}
+//misc
+function reboot() {}
+function refresh() {
+  location.reload();
+}
