@@ -77,7 +77,7 @@ const footerHTML = `
         <span class="tab tab-explore block text-xs">Insights</span>
       </a>
       <a
-        href="/FlySafe_Dashboard_2/pages/help_page.html"
+        href="https://docs.google.com/presentation/d/1E1LffRRFPVq6fAH2K6y-tBhzp-HUobneNcVZ-FFkUps/edit?usp=sharing"
         class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
       >
         <svg
