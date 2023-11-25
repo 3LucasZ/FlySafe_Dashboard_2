@@ -91,6 +91,25 @@
           class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5 w-full"
         >
           <div class="object-top-left font-sans">Display</div>
+          <div class="flex flex-row gap-2">
+            <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
+              Shown:
+              <span id="offsetDiv">?</span>
+            </div>
+            <input
+              type="number"
+              id="shownInputDiv"
+              class="basis-1/4 rounded-lg p-2 w-full"
+              placeholder="e.g. 25"
+              required
+            />
+            <input
+              type="button"
+              value="Set"
+              onclick="setShown()"
+              class="bg-amber-100 basis-1/4 p-4 rounded-lg hover:scale-105 transition-all"
+            />
+          </div>
         </div>
       </div>
       <div
