@@ -64,7 +64,7 @@ function handleNewY(newCm) {
   if (t - preSayT > 1) {
     if (ls_get("speakMode") === "0") {
       var callout;
-      for (x in preSayY < y ? events_ft_seed : events_ft.slice().reverse()) {
+      for (x in preSayY < y ? events_ft : events_ft.slice().reverse()) {
         if (between(preSayY, x, y)) {
           callout = x;
         }

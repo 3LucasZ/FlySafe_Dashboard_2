@@ -1,6 +1,6 @@
 const repoName = "/FlySafe_Dashboard_2";
 
-//const cacheName = "cache_" + Math.floor(Math.random() * 100000000000000); //Local: automatically changes
+//const cacheName = "cache_" + Math.floor(Math.random() * 100000000000000); //Local: auto cache refresh
 const cacheName = repoName + "v3987785"; //Production: manually change before every commit
 
 const assets = [
