@@ -73,12 +73,13 @@ function csvToJs(csv) {
 }
 //sound
 function sayNum(num) {
-  num = num.toPrecision(2);
-  if (num < 1) {
-    say(("" + num).substring(1));
+  if (ls_get("imperial") == "1" && num < 1) {
+    num = num.toPrecision(1);
   } else {
-    say("" + num);
+    num = num.toPrecision(2);
   }
+  if (num < 1) say(("" + num).substring(1));
+  else say("" + num);
 }
 function say(str) {
   var msg = new SpeechSynthesisUtterance();
