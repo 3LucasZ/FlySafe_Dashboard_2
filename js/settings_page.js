@@ -27,7 +27,6 @@ function volDown() {
   ls_set("volume", "" + Math.max(Number(ls_get("volume")) - 1, 0));
   updVolUI();
 }
-
 //speakerMode
 function updSpeakerModeUI() {
   if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
@@ -38,6 +37,19 @@ function changeSpeakMode() {
   ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
   updSpeakerModeUI();
 }
+//shown
+function updShownUI() {
+  shownDiv.innerHTML = ls_get("shown");
+}
+updShownUI();
+function setShown() {
+  shown = Number(shownInputDiv.value);
+  shown = Math.max(offset, 10);
+  shown = Math.min(offset, 300);
+  ls_set("shown", "" + shown);
+  updShownUI();
+}
+
 //offset
 function updOffsetUI() {
   offsetDiv.innerHTML = ls_get("offset");
