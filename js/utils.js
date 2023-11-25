@@ -36,9 +36,9 @@ function getTimeFormatted() {
 function getMomentFormatted() {
   return (
     getDateFormatted() +
-    "-" +
+    "_" +
     getTimeFormatted() +
-    "-" +
+    "_" +
     zeroPad(new Date().getMilliseconds(), 3)
   );
 }
