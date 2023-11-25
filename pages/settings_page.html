@@ -111,18 +111,20 @@
         class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
       >
         <div class="object-top-left font-sans">Misc</div>
-        <button
-          onclick="toggleImperial()"
-          class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
-        >
-          <span id="imperialDiv">Imperial</span>
-        </button>
-        <button
-          onclick="removeAllCaches()"
-          class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
-        >
-          Update App
-        </button>
+        <div class="flex flex-row gap-2">
+          <button
+            onclick="toggleImperial()"
+            class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
+          >
+            <span id="imperialDiv">Imperial</span>
+          </button>
+          <button
+            onclick="removeAllCaches()"
+            class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
+          >
+            Update App
+          </button>
+        </div>
       </div>
     </div>
     <div id="footer"></div>

@@ -116,9 +116,10 @@ function updGraph(t, y, dy) {
 //button handlers
 var isRecording = false;
 function updRecordUI() {
-  recordAvatarDiv.className =
-    "bg-red-500 mx-auto " +
-    (isRecording ? "w-10 h-10 rounded-lg" : "w-14 h-14 rounded-full");
+  recordAvatarDiv.className = isRecording ? "avatar-square" : "avatar-circle";
+  recordBtn.className = isRecording
+    ? "avatar-container glow-fx"
+    : "avatar-container";
 }
 updRecordUI();
 async function toggleIsRecording() {
