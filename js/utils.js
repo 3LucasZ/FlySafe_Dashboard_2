@@ -61,14 +61,14 @@ class CSVBuilder {
     }
   }
   getContent() {
-    return this.entries.join("\n");
+    return this.entries.join("\r\n");
   }
   getDownloadLink() {
     return "data:text/csv;charset=utf-8," + encodeURI(this.getContent());
   }
 }
 function csvToJs(csv) {
-  rows = csv.split("\n");
+  rows = csv.split("\r\n");
   return rows.map((row) => row.split(","));
 }
 //sound

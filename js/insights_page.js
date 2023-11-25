@@ -7,7 +7,6 @@ async function createWidgets() {
   for await (const [name, handle] of root) {
     file = await handle.getFile();
     content = await file.text();
-    console.log(name, content);
     widget = createWidget(name, content);
     widgetListDiv.appendChild(widget);
   }

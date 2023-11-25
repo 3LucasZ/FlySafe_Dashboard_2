@@ -7,8 +7,16 @@ const speakModeDiv = document.getElementById("speakModeDiv");
 const imperialDiv = document.getElementById("imperialDiv");
 
 // State modifiers
+//vol
 function updVolUI() {
-  volDiv.innerHTML = ls_get("volume");
+  volDiv.innerHTML = "";
+  vol = ls_get("volume");
+  for (i = 1; i <= 5; i++) {
+    indicator = document.createElement("div");
+    indicator.className =
+      "w-4 h-full flex rounded " + (i <= vol ? "bg-blue-400" : "bg-white");
+    volDiv.appendChild(indicator);
+  }
 }
 updVolUI();
 function volUp() {
@@ -20,6 +28,17 @@ function volDown() {
   updVolUI();
 }
 
+//speakerMode
+function updSpeakerModeUI() {
+  if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
+  else if (ls_get("speakMode") == "1") speakModeDiv.innerHTML = "Periodic";
+}
+updSpeakerModeUI();
+function changeSpeakMode() {
+  ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
+  updSpeakerModeUI();
+}
+//offset
 function updOffsetUI() {
   offsetDiv.innerHTML = ls_get("offset");
 }
@@ -31,7 +50,7 @@ function setOffset() {
   ls_set("offset", "" + offset);
   updOffsetUI();
 }
-
+//coef
 function updCoefUI() {
   coefDiv.innerHTML = ls_get("coef");
 }
@@ -43,17 +62,7 @@ function setCoef() {
   ls_set("coef", "" + coef);
   updCoefUI();
 }
-
-function updSpeakerModeUI() {
-  if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
-  else if (ls_get("speakMode") == "1") speakModeDiv.innerHTML = "Periodic";
-}
-updSpeakerModeUI();
-function changeSpeakMode() {
-  ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
-  updSpeakerModeUI();
-}
-
+//imperial
 function updImperialUI() {
   imperialDiv.innerHTML = ls_get("imperial") == "1" ? "Imperial" : "Metric";
 }

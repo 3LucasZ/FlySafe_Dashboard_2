@@ -58,7 +58,7 @@ function handleNewY(newCm) {
   preT = t;
   preY = y;
   //voiceover
-  if (ls_get("imperial") === "1") y = mToFt(y);
+  if (ls_get("imperial") === "1") y = mToFt(y); //convert y to specified unit from here on out
   if (t - preSayT > 1) {
     if (ls_get("speakMode") === "0") {
       var callout;
@@ -68,12 +68,17 @@ function handleNewY(newCm) {
         }
       }
       console.log(callout);
-      if (callout !== null && callout !== undefined) say(callout);
+      if (callout !== null && callout !== undefined) {
+        //threshold was hit
+        say(callout);
+        preSayY = y;
+        preSayT = t;
+      }
     } else if (ls_get("speakMode") === "1") {
       sayNum(y);
+      preSayY = y;
+      preSayT = t;
     }
-    preSayY = y;
-    preSayT = t;
   }
 }
 
