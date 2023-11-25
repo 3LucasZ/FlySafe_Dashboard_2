@@ -134,7 +134,7 @@ async function toggleIsRecording() {
     //only save AND return csv as feet
     const cb = new CSVBuilder(["time(s)", "altitude(ft)", "descent(ft/s)"]);
     for (const i of Array(recY.length).keys())
-      cb.addEntry(recT[i], mToFt(recY[i]), mToFt(recDy[i]));
+      cb.addEntry([recT[i], mToFt(recY[i]), mToFt(recDy[i])]);
     createFile(getMomentFormatted(), cb.getContent());
     recT = [];
     recY = [];
@@ -152,7 +152,7 @@ window.onload = (event) => {
 };
 function stalk() {
   console.log("stalk");
-  if (getSecondsDeep() - preT > 0.987) {
+  if (getSecondsDeep() - preT > 2.5) {
     ws_disconnect();
     ws_connect();
   }
