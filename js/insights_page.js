@@ -23,6 +23,7 @@ function createWidget(fileName, fileContent) {
   var downloadBtn = document.createElement("button");
   downloadBtn.className = "bg-amber-100  rounded w-8 h-8";
   downloadBtn.onclick = async () => {
+    //only save AND return csv as feet
     const secret = document.createElement("a");
     secret.href = "data:text/csv;charset=utf-8," + fileContent;
     secret.download = fileName;
@@ -71,30 +72,29 @@ function createChart(csv) {
   data = csvToJs(csv);
   var canvasDiv = document.createElement("canvas");
   canvasDiv.className = "bg-white rounded relative";
+  //only save AND return AND display csv as feet
   new Chart(canvasDiv, {
     type: "line",
     data: {
-      labels: new Array(25).fill(""),
+      labels: new Array(data.length - 1).fill(""),
       datasets: [
         {
-          label: data[0][1],
           data: data.map((entry) => entry[1]),
-          borderWidth: 3,
+          borderWidth: 5,
           cubicInterpolationMode: "monotone",
           pointStyle: false,
           yAxisID: "y1",
         },
         {
-          label: data[0][2],
           data: data.map((entry) => entry[2]),
-          borderWidth: 1,
+          borderWidth: 0.5,
           cubicInterpolationMode: "monotone",
           pointStyle: false,
           yAxisID: "y2",
         },
       ],
     },
-    options: miniGraphOptions,
+    options: getMiniGraphOptions(),
   });
   return canvasDiv;
 }

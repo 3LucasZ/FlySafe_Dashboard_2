@@ -22,6 +22,7 @@ const recordAvatarDiv = document.getElementById("recordAvatarDiv");
 //seed localStorage defaults
 if (ls_get("volume") === null) ls_set("volume", "5");
 if (ls_get("speakMode") === null) ls_set("speakMode", "0");
+if (ls_get("shown") === null) ls_set("shown", "10");
 if (ls_get("offset") === null) ls_set("offset", "0");
 if (ls_get("coef") === null) ls_set("coef", "1");
 if (ls_get("imperial") === null) ls_set("imperial", "1");
@@ -40,25 +41,26 @@ distTypeDiv.innerHTML = ls_get("imperial") == "1" ? "feet" : "meters";
 
 //newY handler
 function handleNewY(newCm) {
+  //calc new
+  t = getSecondsDeep();
   y = newCm / 100;
+  dy = preT == 0 ? 0 : (y - preY) / (t - preT);
   //upd distDiv
   distDiv.innerHTML =
     ls_get("imperial") == "1" ? mToFt(y).toFixed(1) : y.toFixed(2);
-  //calc new
-  t = getSecondsDeep();
-  y = y;
-  dy = preT == 0 ? 0 : (y - preY) / (t - preT);
-
+  //upd graph
+  updGraph(t, y, dy);
+  //upd rec
   if (isRecording) {
     recT.push(t);
     recY.push(y);
     recDy.push(dy);
   }
-  updGraph(t, y, dy);
+  //store last received t,y
   preT = t;
   preY = y;
-  //voiceover
-  if (ls_get("imperial") === "1") y = mToFt(y); //convert y to specified unit from here on out
+  //voiceover (convert y to specified unit from here on out)
+  if (ls_get("imperial") === "1") y = mToFt(y);
   if (t - preSayT > 1) {
     if (ls_get("speakMode") === "0") {
       var callout;
@@ -86,32 +88,32 @@ function handleNewY(newCm) {
 var chart = new Chart(canvasDiv, {
   type: "line",
   data: {
-    labels: new Array(25).fill(""),
+    labels: new Array(Number(ls_get("shown"))).fill(""),
     datasets: [
       {
         label: "altitude(" + (ls_get("imperial") == "1" ? "ft" : "m") + ")",
-        data: new Array(25).fill(0),
-        borderWidth: 3,
+        data: new Array(Number(ls_get("shown"))).fill(0),
+        borderWidth: 5,
         cubicInterpolationMode: "monotone",
         pointStyle: false,
         yAxisID: "y1",
       },
       {
         label: "descent(" + (ls_get("imperial") == "1" ? "ft" : "m") + "/s)",
-        data: new Array(25).fill(0),
-        borderWidth: 1,
+        data: new Array(Number(ls_get("shown"))).fill(0),
+        borderWidth: 0.5,
         cubicInterpolationMode: "monotone",
         pointStyle: false,
         yAxisID: "y2",
       },
     ],
   },
-  options: graphOptions,
+  options: getGraphOptions(),
 });
 function updGraph(t, y, dy) {
   // chart.data.labels.push(t);
-  chart.data.datasets[0].data.push(y);
-  chart.data.datasets[1].data.push(dy);
+  chart.data.datasets[0].data.push(ls_get("imperial") === "1" ? mToFt(y) : y);
+  chart.data.datasets[1].data.push(ls_get("imperial") === "1" ? mToFt(dy) : dy);
   // chart.data.labels.shift();
   chart.data.datasets[0].data.shift();
   chart.data.datasets[1].data.shift();
@@ -126,14 +128,14 @@ function updRecordUI() {
     ? "avatar-container glow-fx"
     : "avatar-container";
 }
-// updRecordUI(); we will set this one manually in html!
+// updRecordUI(); // Manually set in html
 async function toggleIsRecording() {
   isRecording = !isRecording;
   if (!isRecording) {
+    //only save AND return csv as feet
     const cb = new CSVBuilder(["time(s)", "altitude(ft)", "descent(ft/s)"]);
-    for (const i of Array(recY.length).keys()) {
-      cb.addEntry([recT[i], recY[i], recDy[i]]);
-    }
+    for (const i of Array(recY.length).keys())
+      cb.addEntry(recT[i], mToFt(recY[i]), mToFt(recDy[i]));
     createFile(getMomentFormatted(), cb.getContent());
     recT = [];
     recY = [];

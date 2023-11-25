@@ -15,6 +15,7 @@
   - Save on window close: unreliable, so j do it every 10 seconds?
 - Icon generator: https://emoji.aranja.com/
 - SVG Icon picker: https://www.svgrepo.com/
+- SVG decomposition: https://svg-path-visualizer.netlify.app
 - Chart.js: https://cdn.jsdelivr.net/npm/chart.js
 
 ### Choices

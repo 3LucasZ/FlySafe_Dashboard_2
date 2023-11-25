@@ -11,53 +11,63 @@ const events_ft_seed = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 ];
 
-const graphOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  animation: {
-    duration: 0,
-  },
-  scales: {
-    y1: {
-      position: "left",
-      beginAtZero: true,
+function getGraphOptions() {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: {
+      duration: 0,
     },
-    y2: {
-      position: "right",
-      beginAtZero: true,
-      grid: {
-        drawOnChartArea: false,
+    scales: {
+      y1: {
+        position: "left",
+        suggestedMin: 0,
+        suggestedMax:
+          localStorage.getItem("imperial") === "1" ? 20 : 20 * 0.3048,
+      },
+      y2: {
+        position: "right",
+        suggestedMin:
+          localStorage.getItem("imperial") === "1" ? -5 : -5 * 0.3048,
+        suggestedMax: localStorage.getItem("imperial") === "1" ? 5 : 5 * 0.3048,
+        grid: {
+          drawOnChartArea: false,
+        },
       },
     },
-  },
-  plugins: {},
-};
-const miniGraphOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  animation: {
-    duration: 0,
-  },
-  scales: {
-    y1: {
-      position: "left",
-      beginAtZero: true,
-      grid: {
-        drawOnChartArea: false,
+    plugins: {},
+  };
+}
+function getMiniGraphOptions() {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: {
+      duration: 0,
+    },
+    scales: {
+      y1: {
+        position: "left",
+        suggestedMin: 0,
+        suggestedMax: 100,
+        grid: {
+          drawOnChartArea: false,
+        },
+        display: true,
       },
-      display: false,
-    },
-    y2: {
-      position: "right",
-      beginAtZero: true,
-      grid: {
-        drawOnChartArea: false,
+      y2: {
+        position: "right",
+        suggestedMin: -20,
+        suggestedMax: 20,
+        grid: {
+          drawOnChartArea: false,
+        },
+        display: false,
       },
-      display: false,
+      x: {
+        display: false,
+      },
     },
-    x: {
-      display: false,
-    },
-  },
-  plugins: { legend: { display: false } },
-};
+    plugins: { legend: { display: false } },
+  };
+}

@@ -1,9 +1,13 @@
 console.log("settings_page.js");
 
 const volDiv = document.getElementById("volDiv");
+const speakModeDiv = document.getElementById("speakModeDiv");
+const shownDiv = document.getElementById("shownDiv");
+const shownInputDiv = document.getElementById("shownInputDiv");
 const offsetDiv = document.getElementById("offsetDiv");
 const offsetInputDiv = document.getElementById("offsetInputDiv");
-const speakModeDiv = document.getElementById("speakModeDiv");
+const coefDiv = document.getElementById("coefDiv");
+const coefInputDiv = document.getElementById("coefInputDiv");
 const imperialDiv = document.getElementById("imperialDiv");
 
 // State modifiers
@@ -44,8 +48,8 @@ function updShownUI() {
 updShownUI();
 function setShown() {
   shown = Number(shownInputDiv.value);
-  shown = Math.max(offset, 10);
-  shown = Math.min(offset, 300);
+  shown = Math.max(shown, 10);
+  shown = Math.min(shown, 300);
   ls_set("shown", "" + shown);
   updShownUI();
 }
