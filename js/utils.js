@@ -4,6 +4,7 @@ function mToFt(x) {
   return x * 3.28084;
 }
 //get date time
+const zeroPad = (num, places) => String(num).padStart(places, "0");
 function getSeconds() {
   var d = new Date();
   return (d.getTime() - d.setHours(0, 0, 0)) / 1000;
@@ -14,19 +15,31 @@ function getSecondsDeep() {
 }
 function getDateFormatted() {
   const date = new Date();
-  return date.getMonth() + 1 + "_" + date.getDate() + "_" + date.getFullYear();
+  return (
+    zeroPad(date.getMonth() + 1, 2) +
+    "-" +
+    zeroPad(date.getDate(), 2) +
+    "-" +
+    date.getFullYear()
+  );
 }
 function getTimeFormatted() {
   const date = new Date();
-  return date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
+  return (
+    zeroPad(date.getHours(), 2) +
+    "-" +
+    zeroPad(date.getMinutes(), 2) +
+    "-" +
+    zeroPad(date.getSeconds(), 2)
+  );
 }
 function getMomentFormatted() {
   return (
     getDateFormatted() +
-    "_" +
+    "-" +
     getTimeFormatted() +
-    "_" +
-    new Date().getMilliseconds()
+    "-" +
+    zeroPad(new Date().getMilliseconds(), 3)
   );
 }
 
