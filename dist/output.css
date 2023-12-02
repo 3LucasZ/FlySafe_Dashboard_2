@@ -718,6 +718,10 @@ video {
   margin-top: 0.5rem;
 }
 
+.mb-\[env\(safe-area-inset-bottom\)\] {
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
 .box-border {
   box-sizing: border-box;
 }
