@@ -1,4 +1,10 @@
-const footerHTML = /*html*/ `
+class Footer extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    this.innerHTML = /*html*/ `
   <div class="w-full [-webkit-tap-highlight-color:rgba(0,0,0,0)]">
     <section
       id="bottom-navigation"
@@ -103,3 +109,6 @@ const footerHTML = /*html*/ `
     </section>
   </div>
 `;
+  }
+}
+customElements.define("footer-component", Footer);
