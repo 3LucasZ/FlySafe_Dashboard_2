@@ -30,10 +30,14 @@
     <script src="/FlySafe_Dashboard_2/components/footer.js"></script>
   </head>
   <body class="font-bold text-xl">
-    <div class="bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5">
+    <div
+      class="fixed top-0 w-full bg-gradient-to-b from-sky-300 to-cyan-200 text-center p-5 z-10"
+    >
       FlySafe Settings
     </div>
-    <div class="space-y-4 p-4">
+    <div
+      class="fixed top-0 bottom-0 w-full overflow-y-auto rm-scroll-ui | pt-20 pb-20 px-4 | space-y-4"
+    >
       <div class="flex flex-row gap-4">
         <div
           class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5"
@@ -162,7 +166,7 @@
             href="https://192.168.4.1/"
             class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
           >
-            Enable Module
+            Accept Certificate
           </a>
         </div>
       </div>

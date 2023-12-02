@@ -51,7 +51,7 @@ function createWidget(fileName, fileContent) {
   //widgetDiv
   var widgetDiv = document.createElement("div");
   widgetDiv.className =
-    "bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-1 my-5 w-full h-40";
+    "bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-1 w-full h-40";
   widgetDiv.id = fileName;
   //topbar
   var topDiv = document.createElement("div");
