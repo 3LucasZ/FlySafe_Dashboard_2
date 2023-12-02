@@ -13,14 +13,12 @@ const assets = [
   repoName + "/js/createFileWorker.js",
   repoName + "/js/help_page.js",
   repoName + "/js/index.js",
-  repoName + "/js/inject.js",
   repoName + "/js/insights_page.js",
   repoName + "/js/settings_page.js",
   repoName + "/js/utils.js",
   repoName + "/index.html",
   repoName + "/pages/settings_page.html",
   repoName + "/pages/insights_page.html",
-  repoName + "/pages/help_page.html",
 ];
 
 self.addEventListener("activate", (event) => {
