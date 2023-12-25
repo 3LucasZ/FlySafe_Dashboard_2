@@ -4,7 +4,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   <div
   class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
   >
-  <div class="object-top-left font-sans">Connection</div>
+  <div class="object-top-left ">Connection</div>
   <div class="flex flex-row gap-2">
     <a
       href="https://192.168.4.1/"
@@ -24,7 +24,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   <div
     class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
   >
-    <div class="object-top-left font-sans">Sound</div>
+    <div class="object-top-left ">Sound</div>
     <div class="flex flex-row gap-2">
       <button
         onclick="volDown()"
@@ -71,7 +71,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   <div
     class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
   >
-    <div class="object-top-left font-sans">Display</div>
+    <div class="object-top-left ">Display</div>
     <div class="flex flex-row gap-2">
       <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
         Shown:
@@ -96,7 +96,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   <div
     class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
   >
-    <div class="object-top-left font-sans">Tune</div>
+    <div class="object-top-left ">Tune</div>
     <div class="flex flex-row gap-2">
       <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
         Offset:
@@ -140,7 +140,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   <div
     class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
   >
-    <div class="object-top-left font-sans">Misc</div>
+    <div class="object-top-left ">Misc</div>
     <div class="flex flex-row gap-2">
       <button
         onclick="toggleImperial()"
@@ -155,6 +155,17 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
         Update App
       </button>
     </div>
+  </div>
+  <div
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
+  > 
+  <div class="object-top-left">Emergency</div>
+  <div
+    onclick="reboot()"
+    class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center "
+  >
+    Reboot Module
+  </div>
   </div>
 </div>
 `;
