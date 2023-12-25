@@ -4,7 +4,7 @@
   "description": "App for FlySafe Module",
   "scope": "/FlySafe_Dashboard_2/",
   "start_url": "/FlySafe_Dashboard_2/",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "natural",
   "icons": [
     {
