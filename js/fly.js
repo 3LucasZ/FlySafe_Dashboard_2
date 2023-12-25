@@ -18,7 +18,7 @@ var recDy = []; //meters/second
 function handleNewY(newCm) {
   //calc new
   t = getSecondsDeep();
-  y = newCm / 100;
+  y = (newCm - ls_get("offset")) / 100;
   dy = preT == 0 ? 0 : (y - preY) / (t - preT);
   //upd distDiv
   distDiv.innerHTML =
