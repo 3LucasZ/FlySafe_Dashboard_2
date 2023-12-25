@@ -1,3 +1,4 @@
+const autoConnectDiv = document.getElementById("autoConnectDiv");
 const volDiv = document.getElementById("volDiv");
 const speakModeDiv = document.getElementById("speakModeDiv");
 const shownDiv = document.getElementById("shownDiv");
@@ -7,6 +8,19 @@ const offsetInputDiv = document.getElementById("offsetInputDiv");
 const coefDiv = document.getElementById("coefDiv");
 const coefInputDiv = document.getElementById("coefInputDiv");
 const imperialDiv = document.getElementById("imperialDiv");
+
+//connection
+function updAutoConnectUI() {
+  autoConnectDiv.className =
+    ls_get("autoConnect") == "1"
+      ? "bg-gradient-to-br from-green-400 to-green-200 p-4 rounded-lg hover:scale-105 transition-all"
+      : "bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg hover:scale-105 transition-all";
+}
+function toggleAutoConnect() {
+  ls_set("autoConnect", "" + (1 - Number(ls_get("autoConnect"))));
+  updAutoConnectUI();
+}
+updAutoConnectUI();
 
 //vol
 function updVolUI() {

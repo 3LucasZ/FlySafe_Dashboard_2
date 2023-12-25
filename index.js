@@ -11,6 +11,7 @@ if ("serviceWorker" in navigator) {
 }
 
 //seed localStorage defaults
+if (ls_get("autoConnect") === null) ls_set("autoConnect", "0");
 if (ls_get("volume") === null) ls_set("volume", "5");
 if (ls_get("speakMode") === null) ls_set("speakMode", "0");
 if (ls_get("shown") === null) ls_set("shown", "10");
@@ -23,13 +24,14 @@ var websocket;
 var prevMsgTimestamp = 0;
 
 window.onload = (event) => {
-  ws_connect();
+  if (ls_get("autoConnect") == "1") ws_connect();
   var stalkLoop = setInterval(stalk, 7500); //run stalk every 7.5s
 };
 function stalk() {
   console.log("stalk");
   //if 2.5s have passed since the last message was received, force a reconnect
-  if (getSecondsDeep() - prevMsgTimestamp > 2.5) ws_reconnect();
+  if (getSecondsDeep() - prevMsgTimestamp > 2.5 && ls_get("autoConnect") == "1")
+    ws_reconnect();
 }
 
 function ws_connect() {
@@ -71,6 +73,6 @@ function ws_disconnect() {
   updateStatusUI(false);
 }
 function ws_reconnect() {
-  ws_disconnect();
+  if (websocket) ws_disconnect();
   ws_connect();
 }

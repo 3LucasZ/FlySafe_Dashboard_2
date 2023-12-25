@@ -13,7 +13,11 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
     >
       Accept Certificate
     </a>
-
+    <button 
+      id="autoConnectDiv"
+      onclick="toggleAutoConnect()"
+      class="bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg hover:scale-105 transition-all"
+    >Auto Connect</button>
   </div>
   </div>
   <!--**SOUND-->
