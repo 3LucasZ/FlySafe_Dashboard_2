@@ -29,10 +29,7 @@ window.onload = (event) => {
 function stalk() {
   console.log("stalk");
   //if 2.5s have passed since the last message was received, force a reconnect
-  if (getSecondsDeep() - prevMsgTimestamp > 2.5) {
-    ws_disconnect();
-    ws_connect();
-  }
+  if (getSecondsDeep() - prevMsgTimestamp > 2.5) ws_reconnect();
 }
 
 function ws_connect() {
@@ -72,4 +69,8 @@ function ws_disconnect() {
   console.log("Manually disconnected websocket");
   websocket.close();
   updateStatusUI(false);
+}
+function ws_reconnect() {
+  ws_disconnect();
+  ws_connect();
 }
