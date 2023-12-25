@@ -27,3 +27,5 @@
 - PWA > web > app
 
 ### Misc
+
+https://docs.google.com/presentation/d/1E1LffRRFPVq6fAH2K6y-tBhzp-HUobneNcVZ-FFkUps/edit?usp=sharing
