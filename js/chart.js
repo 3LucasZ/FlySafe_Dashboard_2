@@ -1,5 +1,3 @@
-console.log("chart.js");
-
 /**
  * Skipped minification because the original files appears to be already minified.
  * Original file: /npm/chart.js@4.4.0/dist/chart.umd.js

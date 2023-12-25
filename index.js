@@ -1,5 +1,3 @@
-console.log("main.js");
-
 //load PWA service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
@@ -25,7 +23,6 @@ var websocket;
 var prevMsgTimestamp = 0;
 
 window.onload = (event) => {
-  console.log("onload");
   ws_connect();
   var stalkLoop = setInterval(stalk, 7500); //run stalk every 7.5s
 };
