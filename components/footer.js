@@ -11,9 +11,8 @@ class Footer extends HTMLElement {
       class="block fixed inset-x-0 bottom-0 z-10 bg-gradient-to-t from-sky-300 to-cyan-200 pb-[env(safe-area-inset-bottom)]"
     >
       <div id="tabs" class="flex justify-between">
-        <a
-          href="/FlySafe_Dashboard_2/index.html"
-          class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
+        <button
+          class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -32,10 +31,9 @@ class Footer extends HTMLElement {
             />
           </svg>
           <span class="tab tab-home block text-xs">Home</span>
-        </a>
-        <a
-          href="/FlySafe_Dashboard_2/pages/settings_page.html"
-          class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
+        </button>
+        <button
+          class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +57,9 @@ class Footer extends HTMLElement {
             />
           </svg>
           <span class="tab tab-kategori block text-xs">Settings</span>
-        </a>
-        <a
-          href="/FlySafe_Dashboard_2/pages/insights_page.html"
-          class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
+        </button>
+        <button
+          class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -81,10 +78,9 @@ class Footer extends HTMLElement {
             />
           </svg>
           <span class="tab tab-explore block text-xs">Insights</span>
-        </a>
-        <a
-          href="https://docs.google.com/presentation/d/1E1LffRRFPVq6fAH2K6y-tBhzp-HUobneNcVZ-FFkUps/edit?usp=sharing"
-          class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
+        </button>
+        <button
+          class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,9 +98,8 @@ class Footer extends HTMLElement {
               d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
             />
           </svg>
-
           <span class="tab tab-whishlist block text-xs">Help</span>
-        </a>
+        </button>
       </div>
     </section>
   </div>
