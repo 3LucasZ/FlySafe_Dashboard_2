@@ -73,6 +73,7 @@
     animation-fill-mode: forwards;
   }
   .avatar-circle-x {
+    z-index: 20;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -83,7 +84,7 @@
     background: rgb(232, 4, 21);
   }
   .avatar-container {
-    z-index: 1000;
+    z-index: 20;
     position: fixed;
     left: 50%;
     bottom: env(safe-area-inset-bottom);

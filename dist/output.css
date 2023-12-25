@@ -660,6 +660,10 @@ video {
   z-index: 10;
 }
 
+.z-20 {
+  z-index: 20;
+}
+
 .col-span-3 {
   grid-column: span 3 / span 3;
 }
@@ -703,10 +707,6 @@ video {
 
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-
-.mb-\[env\(safe-area-inset-bottom\)\] {
-  margin-bottom: env(safe-area-inset-bottom);
 }
 
 .mt-2 {
@@ -836,28 +836,20 @@ video {
   height: 100%;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
-.min-h-\[68px\] {
-  min-height: 68px;
+.min-h-\[40vh\] {
+  min-height: 40vh;
 }
 
 .min-h-\[60px\] {
   min-height: 60px;
 }
 
-.min-h-full {
-  min-height: 100%;
+.min-h-\[68px\] {
+  min-height: 68px;
 }
 
-.min-h-\[100\%\] {
-  min-height: 100%;
-}
-
-.min-h-\[40vh\] {
-  min-height: 40vh;
+.min-h-\[env\(safe-area-inset-bottom\)\] {
+  min-height: env(safe-area-inset-bottom);
 }
 
 .w-4 {
@@ -1406,14 +1398,6 @@ video {
 
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-\[15px\] {
-  gap: 15px;
-}
-
-.gap-5 {
-  gap: 1.25rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -2086,21 +2070,8 @@ video {
   padding: 1.25rem;
 }
 
-.p-10 {
-  padding: 2.5rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 .pb-1 {
   padding-bottom: 0.25rem;
-}
-
-.pb-20 {
-  padding-bottom: 5rem;
 }
 
 .pb-\[env\(safe-area-inset-bottom\)\] {
@@ -2111,52 +2082,12 @@ video {
   padding-top: 0.5rem;
 }
 
-.pt-20 {
-  padding-top: 5rem;
-}
-
-.pt-24 {
-  padding-top: 6rem;
-}
-
-.pt-\[68\] {
-  padding-top: 68;
+.pb-\[60px\] {
+  padding-bottom: 60px;
 }
 
 .pt-\[68px\] {
   padding-top: 68px;
-}
-
-.pt-\[calc\(68px\+5px\)\] {
-  padding-top: calc(68px + 5px);
-}
-
-.pt-\[calc\(68px\+8px\)\] {
-  padding-top: calc(68px + 8px);
-}
-
-.pt-\[calc\(68px\+10px\)\] {
-  padding-top: calc(68px + 10px);
-}
-
-.pt-\[calc\(68px\+20px\)\] {
-  padding-top: calc(68px + 20px);
-}
-
-.pt-\[calc\(68px\+15px\)\] {
-  padding-top: calc(68px + 15px);
-}
-
-.pt-\[calc\(68px\+5\)\] {
-  padding-top: calc(68px + 5);
-}
-
-.pt-\[calc\(68px\)\] {
-  padding-top: calc(68px);
-}
-
-.pb-\[60px\] {
-  padding-bottom: 60px;
 }
 
 .text-left {
@@ -2728,6 +2659,7 @@ video {
 }
 
 .avatar-circle-x {
+  z-index: 20;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -2739,7 +2671,7 @@ video {
 }
 
 .avatar-container {
-  z-index: 1000;
+  z-index: 20;
   position: fixed;
   left: 50%;
   bottom: env(safe-area-inset-bottom);
@@ -2828,11 +2760,6 @@ video {
 .hover\:before\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
-}
-
-.focus\:text-teal-500:focus {
-  --tw-text-opacity: 1;
-  color: rgb(20 184 166 / var(--tw-text-opacity));
 }
 
 .focus\:hover\:text-center:hover:focus {
