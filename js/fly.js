@@ -1,5 +1,3 @@
-console.log("index.js");
-
 //load PWA service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {

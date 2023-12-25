@@ -1,5 +1,3 @@
-console.log("constants.js");
-
 const repoName = "FlySafe_Dashboard_2";
 
 // const events_ft = [

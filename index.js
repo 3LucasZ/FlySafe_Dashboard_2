@@ -54,26 +54,25 @@ function ws_connect() {
   websocket.onerror = function (evt) {
     onError(evt);
   };
+  function onOpen(evt) {
+    console.log("Websocket connected");
+    updateStatusUI(true);
+  }
+  function onClose(evt) {
+    console.log("Websocket disconnected");
+    updateStatusUI(false);
+  }
+  function onMessage(evt) {
+    console.log("WS Received: " + evt.data);
+    prevMsgTimestamp = getSecondsDeep();
+    handleNewY(evt.data);
+  }
+  function onError(evt) {
+    console.log(evt.data);
+  }
 }
 function ws_disconnect() {
   console.log("Manually disconnected websocket");
   websocket.close();
   updateStatusUI(false);
-}
-
-function onOpen(evt) {
-  console.log("Websocket connected");
-  updateStatusUI(true);
-}
-function onClose(evt) {
-  console.log("Websocket disconnected");
-  updateStatusUI(false);
-}
-function onMessage(evt) {
-  console.log("WS Received: " + evt.data);
-  prevMsgTimestamp = getSecondsDeep();
-  handleNewY(evt.data);
-}
-function onError(evt) {
-  console.log(evt.data);
 }

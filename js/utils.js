@@ -1,4 +1,3 @@
-console.log("utils.js");
 //convert
 function mToFt(x) {
   return x * 3.28084;
@@ -119,3 +118,13 @@ function removeAllCaches() {
     }
   });
 }
+
+//pageview
+curPage = "flyPage";
+async function changePage(page) {
+  document.getElementById(curPage).className = "hidden";
+  curPage = page;
+  document.getElementById(curPage).className = "block";
+  await createWidgets();
+}
+changePage("flyPage");

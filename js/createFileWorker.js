@@ -1,4 +1,5 @@
 onmessage = async (e) => {
+  console.log("createFileWorker.js");
   // Get file handle and encoded msg
   const root = await navigator.storage.getDirectory();
   const newFileHandle = await root.getFileHandle(e.data[0], { create: true });

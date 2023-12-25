@@ -12,6 +12,7 @@ class Footer extends HTMLElement {
     >
       <div id="tabs" class="flex justify-between">
         <button
+          onclick="changePage('flyPage')"
           class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
@@ -33,6 +34,7 @@ class Footer extends HTMLElement {
           <span class="tab tab-home block text-xs">Home</span>
         </button>
         <button
+          onclick="changePage('settingsPage')"
           class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
@@ -59,6 +61,7 @@ class Footer extends HTMLElement {
           <span class="tab tab-kategori block text-xs">Settings</span>
         </button>
         <button
+          onclick="changePage('insightsPage')"
           class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
         >
           <svg
