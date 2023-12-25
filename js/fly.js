@@ -82,19 +82,17 @@ const chart = new Chart(canvasDiv, {
       },
     ],
   },
-  options: getGraphOptions(),
 });
 
 function updGraph(t, y, dy) {
-  // chart.data.labels.push(t);
+  chart.data.labels.push("");
   chart.data.datasets[0].data.push(ls_get("imperial") === "1" ? mToFt(y) : y);
   chart.data.datasets[1].data.push(ls_get("imperial") === "1" ? mToFt(dy) : dy);
-  // chart.data.labels.shift();
-  if (chart.data.datasets[0].data.length > ls_get("shown")) {
+  while (chart.data.datasets[0].data.length > ls_get("shown")) {
     chart.data.datasets[0].data.shift();
     chart.data.datasets[1].data.shift();
+    chart.data.labels.shift();
   }
-
   chart.update();
 }
 
@@ -190,6 +188,7 @@ function loadFlyPage() {
     "altitude(" + (ls_get("imperial") == "1" ? "ft" : "m") + ")";
   chart.data.datasets[1].label =
     "descent(" + (ls_get("imperial") == "1" ? "ft" : "m") + "/s)";
+  chart.options = getGraphOptions();
   chart.update();
   changePage("flyPage");
 }
