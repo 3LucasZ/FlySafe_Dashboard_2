@@ -2,7 +2,7 @@ document.getElementById("flyPage").innerHTML = /*html*/ `
 <div class="flex flex-col gap-4 p-4 overflow-y-auto">
   <div class="grid grid-cols-8 gap-4">
     <div
-      class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5 col-span-3 flex flex-col gap-4"
+      class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4 col-span-3 flex flex-col gap-4"
     >
       <div
         id="statusDiv"
@@ -10,23 +10,23 @@ document.getElementById("flyPage").innerHTML = /*html*/ `
       >
         Not Connected
       </div>
-      <div class="flex flex-row gap-4">
+      <div class="flex flex-row grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div
           onclick="ws_reconnect()"
-          class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center w-full"
+          class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center"
         >
           Connect
         </div>
         <div
           onclick="ws_disconnect()"
-          class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center w-full"
+          class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center"
         >
           Disconnect
         </div>
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5 col-span-5 text-center relative"
+      class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4 col-span-5 text-center relative"
     >
       <span class="text-9xl" id="distDiv">?</span>
       <span class="text-2xl" id="distTypeDiv"></span>
