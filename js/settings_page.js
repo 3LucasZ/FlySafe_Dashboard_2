@@ -1,5 +1,5 @@
 document.getElementById("settingsPage").innerHTML = /*html*/ `
-<div class="fixed top-0 bottom-0 w-full overflow-y-auto rm-scroll-ui | pt-20 pb-20 mb-[env(safe-area-inset-bottom)] px-4 | space-y-4">
+<div class="p-4 space-y-4">
   <div class="flex flex-row gap-4">
     <div class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-5">
       <div class="object-top-left font-sans">Sound</div>

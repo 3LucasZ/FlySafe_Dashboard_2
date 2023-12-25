@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html class="overscroll-none select-none">
   <head>
-    <!--TAB-->
+    <!--TAB VIEW-->
     <title>FlySafe</title>
     <link
       rel="icon"
       type="image/x-icon"
       href="/FlySafe_Dashboard_2/images/icons/icon.png"
     />
-    <!--PWA UI-->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#7dd3fc" />
     <!--PWA-->
     <link
       rel="canonical"
@@ -24,18 +18,27 @@
       rel="apple-touch-icon"
       href="/FlySafe_Dashboard_2/images/icons/icon.png"
     />
-    <!--TAILWIND-->
+    <!--PWA UI-->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#7dd3fc" />
+    <!--CSS-->
     <link href="/FlySafe_Dashboard_2/dist/output.css" rel="stylesheet" />
   </head>
   <body class="font-bold text-xl">
-    <div class="min-h-[68px]"></div>
-    <div id="flyPage" class="hidden"></div>
-    <div id="settingsPage" class="hidden"></div>
-    <div id="insightsPage" class="hidden"></div>
-    <div id="helpPage" class="hidden"></div>
-    <div class="min-h-[60px]"></div>
-    <header-component></header-component>
-    <footer-component></footer-component>
+    <div class="fixed top-0 bottom-0 w-full overflow-y-auto rm-scroll-ui">
+      <div class="min-h-[68px]"></div>
+      <div id="flyPage" class="hidden"></div>
+      <div id="settingsPage" class="hidden"></div>
+      <div id="insightsPage" class="hidden"></div>
+      <div id="helpPage" class="hidden"></div>
+      <div class="min-h-[60px]"></div>
+      <div class="min-h-[env(safe-area-inset-bottom)]"></div>
+      <header-component></header-component>
+      <footer-component></footer-component>
+    </div>
   </body>
   <!--PAGES-->
   <script src="/FlySafe_Dashboard_2/js/fly_page.js"></script>
