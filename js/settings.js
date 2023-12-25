@@ -8,7 +8,6 @@ const coefDiv = document.getElementById("coefDiv");
 const coefInputDiv = document.getElementById("coefInputDiv");
 const imperialDiv = document.getElementById("imperialDiv");
 
-// State modifiers
 //vol
 function updVolUI() {
   volDiv.innerHTML = "";
@@ -29,6 +28,7 @@ function volDown() {
   ls_set("volume", "" + Math.max(Number(ls_get("volume")) - 1, 0));
   updVolUI();
 }
+
 //speakerMode
 function updSpeakerModeUI() {
   if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
@@ -39,7 +39,8 @@ function changeSpeakMode() {
   ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
   updSpeakerModeUI();
 }
-//shown
+
+//# datapoints shown in graph
 function updShownUI() {
   shownDiv.innerHTML = ls_get("shown");
 }
@@ -64,6 +65,7 @@ function setOffset() {
   ls_set("offset", "" + offset);
   updOffsetUI();
 }
+
 //coef
 function updCoefUI() {
   coefDiv.innerHTML = ls_get("coef");
@@ -76,6 +78,7 @@ function setCoef() {
   ls_set("coef", "" + coef);
   updCoefUI();
 }
+
 //imperial
 function updImperialUI() {
   imperialDiv.innerHTML = ls_get("imperial") == "1" ? "Imperial" : "Metric";
@@ -84,4 +87,9 @@ updImperialUI();
 function toggleImperial() {
   ls_set("imperial", "" + (1 - Number(ls_get("imperial"))));
   updImperialUI();
+}
+
+//onload
+function loadSettingsPage() {
+  changePage("settingsPage");
 }

@@ -120,11 +120,9 @@ function removeAllCaches() {
 }
 
 //pageview
-curPage = "flyPage";
+curPage = "";
 async function changePage(page) {
-  document.getElementById(curPage).className = "hidden";
+  if (curPage) document.getElementById(curPage).className = "hidden";
   curPage = page;
   document.getElementById(curPage).className = "block";
-  await createWidgets();
 }
-changePage("flyPage");

@@ -9,7 +9,7 @@ class Footer extends HTMLElement {
       class="fixed inset-x-0 bottom-0 z-10 bg-gradient-to-t from-sky-300 to-cyan-200 pb-[env(safe-area-inset-bottom)] flex justify-between [-webkit-tap-highlight-color:rgba(0,0,0,0)]"
     >
       <button
-        onclick="changePage('flyPage')"
+        onclick="loadFlyPage()"
         class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
       >
         <svg
@@ -31,7 +31,7 @@ class Footer extends HTMLElement {
         <span class="tab tab-home block text-xs">Home</span>
       </button>
       <button
-        onclick="changePage('settingsPage')"
+        onclick="loadSettingsPage()"
         class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
       >
         <svg
@@ -58,7 +58,7 @@ class Footer extends HTMLElement {
         <span class="tab tab-kategori block text-xs">Settings</span>
       </button>
       <button
-        onclick="changePage('insightsPage')"
+        onclick="loadInsightsPage()"
         class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
       >
         <svg
@@ -80,6 +80,7 @@ class Footer extends HTMLElement {
         <span class="tab tab-explore block text-xs">Insights</span>
       </button>
       <button
+        onclick=""
         class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
       >
         <svg

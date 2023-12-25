@@ -1,4 +1,5 @@
 const widgetListDiv = document.getElementById("widgetListDiv");
+
 async function createWidgets() {
   console.log("createWidgets");
   const root = await navigator.storage.getDirectory();
@@ -13,9 +14,6 @@ async function createWidgets() {
     .sort((a, b) => (a.id < b.id ? 1 : -1))
     .forEach((node) => widgetListDiv.appendChild(node));
 }
-window.onload = async (event) => {
-  await createWidgets();
-};
 
 function createWidget(fileName, fileContent) {
   //downloadBtn
@@ -45,8 +43,8 @@ function createWidget(fileName, fileContent) {
   //filename
   var fileNameDiv = document.createElement("div");
   fileNameDiv.innerHTML = fileName;
-  //chart
-  chart = createChart(fileContent);
+  //miniChart
+  miniChart = createMiniChart(fileContent);
   //widgetDiv
   var widgetDiv = document.createElement("div");
   widgetDiv.className =
@@ -62,12 +60,13 @@ function createWidget(fileName, fileContent) {
   //bottombar
   var bottomDiv = document.createElement("div");
   bottomDiv.className = "h-[116px]";
-  bottomDiv.appendChild(chart);
+  bottomDiv.appendChild(miniChart);
   widgetDiv.appendChild(bottomDiv);
   //ret
   return widgetDiv;
 }
-function createChart(csv) {
+
+function createMiniChart(csv) {
   data = csvToJs(csv);
   var canvasDiv = document.createElement("canvas");
   canvasDiv.className = "bg-white rounded relative";
@@ -96,4 +95,10 @@ function createChart(csv) {
     options: getMiniGraphOptions(),
   });
   return canvasDiv;
+}
+
+//onload
+function loadInsightsPage() {
+  createWidgets();
+  changePage("insightsPage");
 }
