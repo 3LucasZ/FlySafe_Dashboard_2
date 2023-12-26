@@ -26,10 +26,12 @@ document.getElementById("flyPage").innerHTML = /*html*/ `
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4 col-span-5 text-center relative"
+      class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4 col-span-5 relative flex items-center"
     >
-      <span class="text-9xl" id="distDiv">?</span>
-      <span class="text-2xl" id="distTypeDiv"></span>
+      <div class="text-center w-full">
+        <span class="text-8xl sm:text-9xl" id="distDiv">?</span>
+        <span class="text-xl sm:text-2xl" id="distTypeDiv"></span>
+      </div>
       <button id="audioBtn" onclick="toggleAudio()"></button>
     </div>
   </div>
