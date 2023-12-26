@@ -122,11 +122,9 @@ async function toggleIsRecording() {
 
 function updateStatusUI(connected) {
   statusDiv.innerHTML = connected ? "Connected" : "Not Connected";
-  statusDiv.className =
-    "p-4 rounded-lg text-center " +
-    (connected
-      ? "bg-gradient-to-br from-green-400 to-green-200"
-      : "bg-gradient-to-br from-red-500 to-red-300");
+  statusDiv.className = connected
+    ? "widget bg-gradient-to-br from-green-400 to-green-200"
+    : "widget bg-gradient-to-br from-red-500 to-red-300";
 }
 async function reboot() {
   console.log("Rebooting the ESP");

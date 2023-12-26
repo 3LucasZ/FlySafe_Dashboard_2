@@ -23,7 +23,7 @@
   @apply flex flex-row gap-2;
 }
 .widget {
-  @apply transition-all hover:scale-105;
+  @apply transition-all active:scale-105;
   @apply rounded sm:rounded-lg;
   @apply text-center w-full truncate;
   @apply p-2 sm:p-4;

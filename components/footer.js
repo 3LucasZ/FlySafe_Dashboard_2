@@ -80,7 +80,7 @@ class Footer extends HTMLElement {
         <span class="tab tab-explore block text-xs">Insights</span>
       </button>
       <button
-        onclick=""
+        onclick="loadHelpPage()"
         class="w-full hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 [-webkit-touch-callout:none] [-webkit-user-drag:none]"
       >
         <svg
