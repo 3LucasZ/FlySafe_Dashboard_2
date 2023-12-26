@@ -6,7 +6,7 @@ document.getElementById("flyPage").innerHTML = /*html*/ `
     >
       <div
         id="statusDiv"
-        class="bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg text-center"
+        class="bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg text-center whitespace-nowrap"
       >
         Not Connected
       </div>
