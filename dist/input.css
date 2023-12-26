@@ -1,10 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card {
+  @apply bg-gradient-to-br from-cyan-300 to-cyan-200;
+  @apply rounded shadow-lg;
+  @apply p-2 sm:p-4 pt-1 sm:pt-2;
+}
+.card-label {
+  @apply font-bold;
+  @apply pb-1 sm:pb-2;
+}
+.card-body {
+  @apply flex flex-row gap-2;
+}
+.widget {
+  @apply transition-all hover:scale-105;
+  @apply rounded-lg;
+  @apply text-center;
+  @apply p-2 sm:p-4;
+}
+
 @layer utilities {
+  /*WEBKIT UI*/
   .rm-scroll-ui::-webkit-scrollbar {
     display: none;
   }
+  /*RECORDING BUTTON*/
   @keyframes toSquare {
     0% {
       position: absolute;
