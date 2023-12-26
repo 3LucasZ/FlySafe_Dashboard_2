@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  touch-action: pan-y;
+}
 .card {
   @apply bg-gradient-to-br from-cyan-300 to-cyan-200;
   @apply rounded shadow-lg;
@@ -16,8 +19,8 @@
 }
 .widget {
   @apply transition-all hover:scale-105;
-  @apply rounded-lg;
-  @apply text-center;
+  @apply rounded;
+  @apply text-center w-full;
   @apply p-2 sm:p-4;
 }
 

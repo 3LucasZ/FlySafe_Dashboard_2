@@ -13,8 +13,8 @@ const imperialDiv = document.getElementById("imperialDiv");
 function updAutoConnectUI() {
   autoConnectDiv.className =
     ls_get("autoConnect") == "1"
-      ? "bg-gradient-to-br from-green-400 to-green-200 p-4 rounded-lg hover:scale-105 transition-all"
-      : "bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg hover:scale-105 transition-all";
+      ? "widget bg-gradient-to-br from-green-400 to-green-200"
+      : "widget bg-gradient-to-br from-red-500 to-red-300";
 }
 function toggleAutoConnect() {
   ls_set("autoConnect", "" + (1 - Number(ls_get("autoConnect"))));
