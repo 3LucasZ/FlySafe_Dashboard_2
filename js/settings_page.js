@@ -1,5 +1,5 @@
 document.getElementById("settingsPage").innerHTML = /*html*/ `
-<div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
   <!--**CONNECTION-->
   <div class="card">
     <div class="card-label">Connection</div>
@@ -87,7 +87,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   </div>
   <!--**TUNE-->
   <div class="card">
-    <div class="card-title">Tune</div>
+    <div class="card-label">Tune</div>
     <div class="card-body">
       <div class="widget bg-amber-100 basis-1/2">
         Offset:
