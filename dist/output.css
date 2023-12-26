@@ -864,6 +864,15 @@ video {
   width: 100%;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-\[50\%\] {
+  width: 50%;
+}
+
 .min-w-\[32px\] {
   min-width: 32px;
 }
@@ -2790,7 +2799,16 @@ video {
   .widget {
     padding: 1rem;
   }
+}
 
+.screen-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 640px) {
   .sm\:container {
     width: 100%;
   }

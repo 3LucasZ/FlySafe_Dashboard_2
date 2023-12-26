@@ -28,6 +28,12 @@
   @apply text-center w-full truncate;
   @apply p-2 sm:p-4;
 }
+.screen-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 @layer utilities {
   /*WEBKIT UI*/
