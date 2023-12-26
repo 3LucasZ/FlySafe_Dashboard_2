@@ -2,29 +2,31 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
 <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
   <!--**CONNECTION-->
   <div
-  class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg | px-4 pb-4 pt-2"
   >
-  <div class="object-top-left ">Connection</div>
-  <div class="flex flex-row gap-2">
-    <a
-      href="https://192.168.4.1/"
-      target="_blank"
-      class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all"
-    >
-      Accept Certificate
-    </a>
-    <button 
-      id="autoConnectDiv"
-      onclick="toggleAutoConnect()"
-      class="bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg hover:scale-105 transition-all"
-    >Auto Connect</button>
-  </div>
+    <div class="object-top-left font-bold pb-2">Connection</div>
+    <div class="flex flex-row gap-2">
+      <a
+        href="https://192.168.4.1/"
+        target="_blank"
+        class="bg-amber-100 p-4 rounded-lg hover:scale-105 transition-all text-center"
+      >
+        Trust Certificate
+      </a>
+      <button
+        id="autoConnectDiv"
+        onclick="toggleAutoConnect()"
+        class="bg-gradient-to-br from-red-500 to-red-300 p-4 rounded-lg hover:scale-105 transition-all text-center"
+      >
+        Auto Connect
+      </button>
+    </div>
   </div>
   <!--**SOUND-->
   <div
-    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg | px-4 pb-4 pt-2"
   >
-    <div class="object-top-left ">Sound</div>
+    <div class="object-top-left font-bold pb-2">Sound</div>
     <div class="flex flex-row gap-2">
       <button
         onclick="volDown()"
@@ -69,9 +71,9 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   </div>
   <!--**DISPLAY-->
   <div
-    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg | px-4 pb-4 pt-2"
   >
-    <div class="object-top-left ">Display</div>
+    <div class="object-top-left font-bold pb-2">Display</div>
     <div class="flex flex-row gap-2">
       <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
         Shown:
@@ -94,9 +96,9 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   </div>
   <!--**TUNE-->
   <div
-    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg | px-4 pb-4 pt-2"
   >
-    <div class="object-top-left ">Tune</div>
+    <div class="object-top-left font-bold pb-2">Tune</div>
     <div class="flex flex-row gap-2">
       <div class="bg-amber-100 basis-1/2 p-4 rounded-lg text-center">
         Offset:
@@ -138,9 +140,9 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   </div>
   <!--**MISC-->
   <div
-    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg | px-4 pb-4 pt-2"
   >
-    <div class="object-top-left ">Misc</div>
+    <div class="object-top-left font-bold pb-2">Misc</div>
     <div class="flex flex-row gap-2">
       <button
         onclick="toggleImperial()"
@@ -157,15 +159,15 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
     </div>
   </div>
   <div
-    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg p-4"
-  > 
-  <div class="object-top-left">Emergency</div>
-  <div
-    onclick="reboot()"
-    class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center "
+    class="bg-gradient-to-br from-cyan-300 to-cyan-200 rounded shadow-lg | px-4 pb-4 pt-2"
   >
-    Reboot Module
-  </div>
+    <div class="object-top-left font-bold pb-2">Emergency</div>
+    <div
+      onclick="reboot()"
+      class="bg-gradient-to-br from-amber-400 to-amber-200 hover:scale-105 transition-all p-4 rounded-lg text-center"
+    >
+      Reboot Module
+    </div>
   </div>
 </div>
 `;

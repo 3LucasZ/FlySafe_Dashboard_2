@@ -18,6 +18,12 @@
 - SVG decomposition: https://svg-path-visualizer.netlify.app
 - Chart.js: https://cdn.jsdelivr.net/npm/chart.js
 
+- CERTS
+  - https://community.arubanetworks.com/discussion/ios-not-verified-for-trusted-certificate
+  - https://www.sslshopper.com/certificate-decoder.html
+  - https://github.com/espressif/esp-idf/tree/master/examples/protocols/https_server/wss_server
+    - openssl req -newkey rsa:2048 -nodes -keyout prvtkey.pem -x509 -days 3650 -out cacert.pem -subj "/CN=ESP32 HTTPS server example"
+
 ### Choices
 
 - Synth > wav
