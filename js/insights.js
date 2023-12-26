@@ -18,7 +18,7 @@ async function createWidgets() {
 function createWidget(fileName, fileContent) {
   //downloadBtn
   var downloadBtn = document.createElement("button");
-  downloadBtn.className = "bg-amber-100  rounded w-8 h-8";
+  downloadBtn.className = "bg-amber-100 rounded min-w-[32px] min-h-[32px]";
   downloadBtn.onclick = async () => {
     //only save AND return csv as feet
     const secret = document.createElement("a");
@@ -32,7 +32,7 @@ function createWidget(fileName, fileContent) {
   downloadBtn.innerHTML = downloadIcon;
   //trashBtn
   var trashBtn = document.createElement("button");
-  trashBtn.className = "bg-red-500 rounded w-8 h-8";
+  trashBtn.className = "bg-red-500 rounded min-w-[32px] min-h-[32px]";
   trashBtn.onclick = async () => {
     const root = await navigator.storage.getDirectory();
     await root.removeEntry(fileName);
@@ -42,6 +42,7 @@ function createWidget(fileName, fileContent) {
   trashBtn.innerHTML = trashIcon;
   //filename
   var fileNameDiv = document.createElement("div");
+  fileNameDiv.className = "truncate px-3";
   fileNameDiv.innerHTML = fileName;
   //miniChart
   miniChart = createMiniChart(fileContent);
