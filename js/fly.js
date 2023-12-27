@@ -12,24 +12,24 @@ var preSayT = 0; //seconds
 var preSayY = 0; //meters
 var recT = []; //seconds
 var recY = []; //meters
-var recDy = []; //meters/second
+var recM = []; //meters/second
 
 //newY handler
 function handleNewY(newCm) {
   //calc new
   t = getSecondsDeep();
   y = (newCm - ls_get("offset")) / 100;
-  dy = preT == 0 ? 0 : (y - preY) / (t - preT);
+  m = preT == 0 ? 0 : (y - preY) / (t - preT);
   //upd distDiv
   distDiv.innerHTML =
     ls_get("imperial") == "1" ? mToFt(y).toFixed(1) : y.toFixed(2);
   //upd graph
-  updGraph(t, y, dy);
+  updGraph(t, y, m);
   //upd rec as metric, future will convert to imperial
   if (isRecording) {
     recT.push(t);
     recY.push(y);
-    recDy.push(dy);
+    recM.push(m);
   }
   //store last received t,y
   preT = t;
@@ -84,10 +84,10 @@ const chart = new Chart(canvasDiv, {
   },
 });
 
-function updGraph(t, y, dy) {
+function updGraph(t, y, m) {
   chart.data.labels.push("");
   chart.data.datasets[0].data.push(ls_get("imperial") === "1" ? mToFt(y) : y);
-  chart.data.datasets[1].data.push(ls_get("imperial") === "1" ? mToFt(dy) : dy);
+  chart.data.datasets[1].data.push(ls_get("imperial") === "1" ? mToFt(m) : m);
   while (chart.data.datasets[0].data.length > ls_get("shown")) {
     chart.data.datasets[0].data.shift();
     chart.data.datasets[1].data.shift();
@@ -111,11 +111,11 @@ async function toggleIsRecording() {
     //only save AND return csv as feet
     const cb = new CSVBuilder(["time(s)", "altitude(ft)", "descent(ft/s)"]);
     for (const i of Array(recY.length).keys())
-      cb.addEntry([recT[i], mToFt(recY[i]), mToFt(recDy[i])]);
+      cb.addEntry([recT[i], mToFt(recY[i]), mToFt(recM[i])]);
     createFile(getMomentFormatted(), cb.getContent());
     recT = [];
     recY = [];
-    recDy = [];
+    recM = [];
   }
   updRecordUI();
 }
