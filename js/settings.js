@@ -1,4 +1,5 @@
 const autoConnectDiv = document.getElementById("autoConnectDiv");
+const checkNetworkDiv = document.getElementById("checkNetworkDiv");
 const volDiv = document.getElementById("volDiv");
 const speakModeDiv = document.getElementById("speakModeDiv");
 const checkSynthDiv = document.getElementById("checkSynthDiv");
@@ -10,7 +11,8 @@ const coefDiv = document.getElementById("coefDiv");
 const coefInputDiv = document.getElementById("coefInputDiv");
 const imperialDiv = document.getElementById("imperialDiv");
 
-//connection
+//CONNECTION
+//autoConnect
 function updAutoConnectUI() {
   autoConnectDiv.className =
     ls_get("autoConnect") == "1"
@@ -22,6 +24,13 @@ function toggleAutoConnect() {
   updAutoConnectUI();
 }
 updAutoConnectUI();
+//checkNetwork
+function checkNetwork() {
+  checkNetworkDiv.className = window.navigator.onLine
+    ? "widget bg-gradient-to-br from-green-400 to-green-200"
+    : "widget bg-gradient-to-br from-red-500 to-red-300";
+}
+checkNetwork();
 
 //SOUND
 //%vol
