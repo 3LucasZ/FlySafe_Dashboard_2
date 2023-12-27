@@ -135,7 +135,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
         <span id="imperialDiv">Imperial</span>
       </button>
       <button onclick="removeAllCaches()" class="widget bg-amber-100">
-        Update App
+        Remove Caches
       </button>
     </div>
   </div>
