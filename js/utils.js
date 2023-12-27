@@ -63,7 +63,7 @@ class CSV {
     this.header = header;
   }
   addEntry(entry) {
-    if (entry.length != header.length) {
+    if (entry.length != this.header.length) {
       throw "ERR: Header length does not match entry length!";
     } else {
       this.entries.push(entry);
