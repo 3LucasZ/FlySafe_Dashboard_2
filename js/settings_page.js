@@ -142,11 +142,19 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
   <!--**EMERGENCY-->
   <div class="card">
     <div class="card-label">Emergency</div>
-    <div
-      onclick="reboot()"
-      class="widget bg-gradient-to-br from-amber-400 to-amber-200"
-    >
-      Reboot Module
+      <div class="card-body">
+      <div
+        onclick="reboot()"
+        class="widget bg-gradient-to-br from-amber-400 to-amber-200"
+      >
+        Reboot Module
+      </div>
+      <div
+        onclick="refresh()"
+        class="widget bg-gradient-to-br from-amber-400 to-amber-200"
+      >
+        Refresh Website
+      </div>
     </div>
   </div>
 </div>
