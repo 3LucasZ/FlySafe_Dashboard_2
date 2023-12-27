@@ -1,6 +1,7 @@
 const autoConnectDiv = document.getElementById("autoConnectDiv");
 const volDiv = document.getElementById("volDiv");
 const speakModeDiv = document.getElementById("speakModeDiv");
+const checkSynthDiv = document.getElementById("checkSynthDiv");
 const shownDiv = document.getElementById("shownDiv");
 const shownInputDiv = document.getElementById("shownInputDiv");
 const offsetDiv = document.getElementById("offsetDiv");
@@ -22,7 +23,8 @@ function toggleAutoConnect() {
 }
 updAutoConnectUI();
 
-//vol
+//SOUND
+//%vol
 function updVolUI() {
   volDiv.innerHTML = "";
   vol = ls_get("volume");
@@ -42,7 +44,6 @@ function volDown() {
   ls_set("volume", "" + Math.max(Number(ls_get("volume")) - 1, 0));
   updVolUI();
 }
-
 //speakerMode
 function updSpeakerModeUI() {
   if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
@@ -53,6 +54,14 @@ function changeSpeakMode() {
   ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
   updSpeakerModeUI();
 }
+//checkSynth
+function checkSynth() {
+  checkSynthDiv.className =
+    "speechSynthesis" in window
+      ? "widget bg-gradient-to-br from-green-400 to-green-200"
+      : "widget bg-gradient-to-br from-red-500 to-red-300";
+}
+checkSynth();
 
 //# datapoints shown in graph
 function updShownUI() {
