@@ -5,8 +5,10 @@ if ("serviceWorker" in navigator) {
       .register("/FlySafe_Dashboard_2/serviceWorker.js", {
         scope: "/FlySafe_Dashboard_2/",
       })
-      .then((res) => console.log("service worker registered", res))
-      .catch((err) => console.log("service worker not registered", err));
+      .then((res) => console.log("[index.js] service worker registered:", res))
+      .catch((err) =>
+        console.log("[index.js] service worker register failed:", err)
+      );
   });
 }
 

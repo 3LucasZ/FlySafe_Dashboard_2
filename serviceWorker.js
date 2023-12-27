@@ -1,58 +1,119 @@
-const repoName = "/FlySafe_Dashboard_2";
-
-//const cacheName = "cache_" + Math.floor(Math.random() * 100000000000000); //Local: auto cache refresh
-const cacheName = "2324328488"; //Production: manually change before every commit
+const VERSION = "2"; //Also used as cache name. Manually change after every change in the service worker.
+const cacheName = VERSION;
 
 const assets = [
-  repoName + "/",
-  repoName + "/components/footer.js",
-  repoName + "/components/header.js",
-  repoName + "/dist/output.css",
-  repoName + "/images/icons/icon.png",
-  repoName + "/js/chart.js",
-  repoName + "/js/constants.js",
-  repoName + "/js/createFileWorker.js",
-  repoName + "/js/fly_page.js",
-  repoName + "/js/fly.js",
-  repoName + "/js/help_page.js",
-  repoName + "/js/help.js",
-  repoName + "/js/insights_page.js",
-  repoName + "/js/insights.js",
-  repoName + "/js/settings_page.js",
-  repoName + "/js/settings.js",
-  repoName + "/js/utils.js",
-  repoName + "/index.html",
-  repoName + "/index.js",
+  "./",
+  "./components/footer.js",
+  "./components/header.js",
+  "./dist/output.css",
+  "./images/icons/icon.png",
+  "./js/chart.js",
+  "./js/constants.js",
+  "./js/createFileWorker.js",
+  "./js/fly_page.js",
+  "./js/fly.js",
+  "./js/help_page.js",
+  "./js/help.js",
+  "./js/insights_page.js",
+  "./js/insights.js",
+  "./js/settings_page.js",
+  "./js/settings.js",
+  "./js/utils.js",
+  "./index.html",
+  "./index.js",
+  "./manifest.json",
 ];
 
-self.addEventListener("activate", (event) => {
-  // Remove old caches
-  event.waitUntil(
-    (async () => {
-      const keys = await caches.keys();
-      return keys.map(async (cache) => {
-        if (cache !== cacheName) {
-          console.log("Service Worker: Removing old cache: " + cache);
-          return await caches.delete(cache);
-        }
-      });
-    })()
+self.addEventListener("install", (installEvent) => {
+  console.log("[Service Worker] Event: Install");
+  console.log("[Service Worker] Using new cache: " + cacheName);
+  //cache all assets
+  installEvent.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      cache
+        .addAll(assets)
+        .then(() => {
+          console.log("[Service Worker] All files successfully cached");
+          return self.skipWaiting();
+        })
+        .catch((error) => {
+          console.error("[Service Worker] Failed to cache", error);
+        });
+    })
   );
 });
 
-self.addEventListener("install", (installEvent) => {
-  console.log("Service Worker: Using new cache: " + cacheName);
-  installEvent.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      cache.addAll(assets);
-    })
+self.addEventListener("activate", (event) => {
+  console.log("[Service Worker] Event: Activate");
+  // Remove old caches
+  event.waitUntil(
+    caches
+      .keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cache) => {
+            if (cache !== cacheName) {
+              console.log("[Service Worker] Deleting old cache: " + cache);
+              return caches.delete(cache);
+            }
+          })
+        );
+      })
+      .then(function () {
+        console.log("[Service Worker] Old caches successfully cleared");
+        return self.clients.claim();
+      })
   );
 });
 
 self.addEventListener("fetch", (fetchEvent) => {
+  console.log("[Service Worker] Event: Fetch");
+  console.log("[Service Worker] Intercepted request:", fetchEvent.request.url);
   fetchEvent.respondWith(
     caches.match(fetchEvent.request).then((res) => {
-      return res || fetch(fetchEvent.request);
+      ret = res || fetch(fetchEvent.request);
+      console.log("[Service Worker] Response:", ret);
+      return ret;
     })
   );
+});
+async function cacheFirst(request) {
+  console.log("[Service Worker] Cache first strategy");
+  const cachedResponse = await caches.match(request);
+  return cachedResponse || fetch(request);
+}
+async function networkFirst(request) {
+  const dynamicCache = await caches.open(cacheName);
+  try {
+    const networkResponse = await fetch(request);
+    // Cache the dynamic API response
+    dynamicCache.put(request, networkResponse.clone()).catch((err) => {
+      console.warn(request.url + ": " + err.message);
+    });
+    // Return the API response
+    return networkResponse;
+  } catch (err) {
+    // Return the cached API response
+    const cachedResponse = await dynamicCache.match(request);
+    return cachedResponse;
+  }
+}
+
+self.addEventListener("push", (event) => {
+  console.log("[Service Worker] ");
+
+  var title = "Push notification demo";
+  var body = {
+    body: "click to return to application",
+    tag: "demo",
+    icon: "./images/icons/apple-touch-icon.png",
+    badge: "./images/icons/apple-touch-icon.png",
+    //Custom actions buttons
+    actions: [
+      { action: "yes", title: "I ♥ this app!" },
+      { action: "no", title: "I don't like this app" },
+    ],
+  };
+
+  event.waitUntil(self.registration.showNotification(title, body));
 });

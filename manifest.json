@@ -1,7 +1,7 @@
 {
   "name": "FlySafe",
   "short_name": "FlySafe",
-  "description": "App for FlySafe Module",
+  "description": "App for using the FlySafe Module",
   "scope": "/FlySafe_Dashboard_2/",
   "start_url": "/FlySafe_Dashboard_2/",
   "display": "fullscreen",
