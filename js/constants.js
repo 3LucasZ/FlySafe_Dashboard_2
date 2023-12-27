@@ -10,6 +10,7 @@ const events_ft_seed = [
 ];
 
 function getGraphOptions() {
+  //dynamic units: ft/m
   return {
     responsive: true,
     maintainAspectRatio: false,
@@ -33,10 +34,15 @@ function getGraphOptions() {
         },
       },
     },
-    plugins: {},
+    plugins: {
+      tooltip: {
+        enabled: false,
+      },
+    },
   };
 }
 function getMiniGraphOptions() {
+  //static units: ft
   return {
     responsive: true,
     maintainAspectRatio: false,
@@ -66,6 +72,6 @@ function getMiniGraphOptions() {
         display: false,
       },
     },
-    plugins: { legend: { display: false } },
+    plugins: { legend: { display: false }, tooltip: { enabled: false } },
   };
 }
