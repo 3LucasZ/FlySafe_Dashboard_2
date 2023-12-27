@@ -48,28 +48,35 @@ function between(l, x, r) {
 }
 
 //CSV
-class CSVBuilder {
-  constructor(headers) {
-    this.entries = [headers];
+class CSV {
+  constructor() {
+    this.header;
+    this.entries = [];
+  }
+  fromString(string) {
+    const rows = string.split("\r\n");
+    const splitRows = rows.map((row) => row.split(","));
+    this.setHeader(splitRows[0]);
+    for (i = 1; i < splitRows.length; i++) this.addEntry(splitRows[i]);
+  }
+  setHeader(header) {
+    this.header = header;
   }
   addEntry(entry) {
-    if (entry.length != this.entries[0].length) {
-      throw "Header length does not match entry length";
+    if (entry.length != header.length) {
+      throw "ERR: Header length does not match entry length!";
     } else {
       this.entries.push(entry);
     }
   }
-  getContent() {
+  toString() {
     return this.entries.join("\r\n");
   }
   getDownloadLink() {
-    return "data:text/csv;charset=utf-8," + encodeURI(this.getContent());
+    return "data:text/csv;charset=utf-8," + encodeURI(this.toString());
   }
 }
-function csvToJs(csv) {
-  rows = csv.split("\r\n");
-  return rows.map((row) => row.split(","));
-}
+
 //sound
 function sayNum(num) {
   if (ls_get("imperial") == "1" && num < 1) {

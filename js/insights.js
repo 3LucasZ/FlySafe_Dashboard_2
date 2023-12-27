@@ -16,13 +16,16 @@ async function createWidgets() {
 }
 
 function createWidget(fileName, fileContent) {
+  const csvString = fileContent;
+  const csv = new CSV();
+  csv.fromString(csvString);
   //downloadBtn
   var downloadBtn = document.createElement("button");
   downloadBtn.className = "bg-amber-100 rounded min-w-[32px] min-h-[32px]";
   downloadBtn.onclick = async () => {
     //only save AND return csv as feet
     const secret = document.createElement("a");
-    secret.href = "data:text/csv;charset=utf-8," + fileContent;
+    secret.href = csv.getDownloadLink();
     secret.download = fileName;
     document.body.appendChild(secret);
     secret.click();
@@ -45,7 +48,7 @@ function createWidget(fileName, fileContent) {
   fileNameDiv.className = "truncate px-3";
   fileNameDiv.innerHTML = fileName;
   //miniChart
-  miniChart = createMiniChart(fileContent);
+  miniChart = createMiniChart(csv);
   //widgetDiv
   var widgetDiv = document.createElement("div");
   widgetDiv.className =
@@ -68,24 +71,23 @@ function createWidget(fileName, fileContent) {
 }
 
 function createMiniChart(csv) {
-  data = csvToJs(csv);
   var canvasDiv = document.createElement("canvas");
   canvasDiv.className = "bg-white rounded relative";
   //only save AND return AND display csv as feet
   new Chart(canvasDiv, {
     type: "line",
     data: {
-      labels: new Array(data.length - 1).fill(""),
+      labels: csv.entries.map((entry) => ""),
       datasets: [
         {
-          data: data.map((entry) => entry[1]),
+          data: csv.entries.map((entry) => entry[1]),
           borderWidth: 5,
           cubicInterpolationMode: "monotone",
           pointStyle: false,
           yAxisID: "y1",
         },
         {
-          data: data.map((entry) => entry[2]),
+          data: csv.entries.map((entry) => entry[2]),
           borderWidth: 0.5,
           cubicInterpolationMode: "monotone",
           pointStyle: false,

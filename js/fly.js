@@ -109,10 +109,11 @@ async function toggleIsRecording() {
   isRecording = !isRecording;
   if (!isRecording) {
     //only save AND return csv as feet
-    const cb = new CSVBuilder(["time(s)", "altitude(ft)", "descent(ft/s)"]);
+    const csv = new CSV();
+    csv.setHeader(["time(s)", "altitude(ft)", "descent(ft/s)"]);
     for (const i of Array(recY.length).keys())
-      cb.addEntry([recT[i], mToFt(recY[i]), mToFt(recM[i])]);
-    createFile(getMomentFormatted(), cb.getContent());
+      csv.addEntry([recT[i], mToFt(recY[i]), mToFt(recM[i])]);
+    createFile(getMomentFormatted(), csv.toString());
     recT = [];
     recY = [];
     recM = [];
