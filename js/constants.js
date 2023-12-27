@@ -66,7 +66,7 @@ function getMiniGraphOptions() {
         grid: {
           drawOnChartArea: false,
         },
-        display: false,
+        display: true,
       },
       x: {
         display: false,
