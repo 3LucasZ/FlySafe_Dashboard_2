@@ -1,6 +1,6 @@
-const VERSION = "2"; //Also used as cache name. Manually change after every change in the service worker.
+const VERSION = "" + Math.random(); //Also used as cache name. Manually change after every change in the service worker.
+//const VERSION = 5;
 const cacheName = VERSION;
-
 const assets = [
   "./",
   "./components/footer.js",

@@ -18,13 +18,13 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
       >
         Auto Connect
       </button>
-      <button
+      <!--<button
         id="checkNetworkDiv"
         onclick="checkNetwork()"
         class="widget"
       >
         Check Network
-      </button>
+      </button>-->
     </div>
   </div>
   <!--**SOUND-->
@@ -67,9 +67,9 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
       <button onclick="changeSpeakMode()" class="widget bg-amber-100">
         <span id="speakModeDiv">Threshold</span>
       </button>
-      <button onclick="checkSynth()" class="widget" id="checkSynthDiv">
+      <!--<button onclick="checkSynth()" class="widget" id="checkSynthDiv">
         Check Synth
-      </button>      
+      </button>-->      
     </div>
   </div>
   <!--**DISPLAY-->
