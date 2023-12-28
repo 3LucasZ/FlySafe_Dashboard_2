@@ -660,6 +660,14 @@ video {
   z-index: 10;
 }
 
+.z-20 {
+  z-index: 20;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
 .col-span-3 {
   grid-column: span 3 / span 3;
 }
@@ -694,6 +702,10 @@ video {
 
 .clear-none {
   clear: none;
+}
+
+.m-0 {
+  margin: 0px;
 }
 
 .mx-auto {
@@ -832,6 +844,66 @@ video {
   height: 100%;
 }
 
+.h-\[58vw\] {
+  height: 58vw;
+}
+
+.h-\[58\.3vw\] {
+  height: 58.3vw;
+}
+
+.h-\[58\.5vw\] {
+  height: 58.5vw;
+}
+
+.h-\[60vw\] {
+  height: 60vw;
+}
+
+.h-\[62vw\] {
+  height: 62vw;
+}
+
+.h-\[65vw\] {
+  height: 65vw;
+}
+
+.h-\[75vw\] {
+  height: 75vw;
+}
+
+.h-\[55vw\] {
+  height: 55vw;
+}
+
+.h-\[59vw\] {
+  height: 59vw;
+}
+
+.h-\[61vw\] {
+  height: 61vw;
+}
+
+.h-\[57vw\] {
+  height: 57vw;
+}
+
+.h-\[56vw\] {
+  height: 56vw;
+}
+
+.h-\[56\.8vw\] {
+  height: 56.8vw;
+}
+
+.h-\[56\.5vw\] {
+  height: 56.5vw;
+}
+
+.h-\[56\.4vw\] {
+  height: 56.4vw;
+}
+
 .min-h-\[32px\] {
   min-height: 32px;
 }
@@ -871,6 +943,10 @@ video {
 
 .w-\[50\%\] {
   width: 50%;
+}
+
+.w-\[100vw\] {
+  width: 100vw;
 }
 
 .min-w-\[32px\] {
@@ -1789,6 +1865,22 @@ video {
   border-width: 1px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
+.border-8 {
+  border-width: 8px;
+}
+
+.border-0 {
+  border-width: 0px;
+}
+
+.border-4 {
+  border-width: 4px;
+}
+
 .border-x {
   border-left-width: 1px;
   border-right-width: 1px;
@@ -1845,6 +1937,31 @@ video {
 
 .border-none {
   border-style: none;
+}
+
+.border-indigo-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(79 70 229 / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-cyan-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(165 243 252 / var(--tw-border-opacity));
+}
+
+.border-sky-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(186 230 253 / var(--tw-border-opacity));
+}
+
+.border-sky-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(125 211 252 / var(--tw-border-opacity));
 }
 
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
@@ -2073,6 +2190,10 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .px-3 {
