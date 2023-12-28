@@ -30,7 +30,7 @@ function checkNetwork() {
     ? "widget bg-gradient-to-br from-green-400 to-green-200"
     : "widget bg-gradient-to-br from-red-500 to-red-300";
 }
-checkNetwork();
+// checkNetwork();
 
 //SOUND
 //%vol
@@ -70,7 +70,7 @@ function checkSynth() {
       ? "widget bg-gradient-to-br from-green-400 to-green-200"
       : "widget bg-gradient-to-br from-red-500 to-red-300";
 }
-checkSynth();
+// checkSynth();
 
 //# datapoints shown in graph
 function updShownUI() {
