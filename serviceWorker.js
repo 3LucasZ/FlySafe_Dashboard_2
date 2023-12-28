@@ -1,5 +1,6 @@
-const VERSION = "" + Math.random(); //Also used as cache name. Manually change after every change in the service worker.
-//const VERSION = 5;
+//constants
+const DBG = true;
+const VERSION = DBG ? "" + Math.random() : 7; //Also used as cache name. Manually change after every change in the service worker.
 const cacheName = VERSION;
 const assets = [
   "./",
@@ -24,6 +25,7 @@ const assets = [
   "./manifest.json",
 ];
 
+//event listeners
 self.addEventListener("install", (installEvent) => {
   console.log("[Service Worker] Event: Install");
   console.log("[Service Worker] Using new cache: " + cacheName);
@@ -69,7 +71,9 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (fetchEvent) => {
   console.log("[Service Worker] Event: Fetch");
   console.log("[Service Worker] Intercepted request:", fetchEvent.request.url);
-  if (fetchEvent.request.url.origin === location.origin) {
+  var request = fetchEvent.request;
+  var url = new URL(request.url);
+  if (url.origin === location.origin) {
     fetchEvent.respondWith(cacheFirst(fetchEvent.request));
   } else {
     fetchEvent.respondWith(networkFirst(fetchEvent.request));
@@ -85,6 +89,11 @@ async function networkFirst(request) {
   const dynamicCache = await caches.open(cacheName);
   try {
     const networkResponse = await fetch(request);
+    if (!networkResponse.ok) throw "Resource requested does not exist.";
+    console.log(
+      "[Service Worker] Network success, networkResponse:",
+      networkResponse
+    );
     // Cache the dynamic API response
     dynamicCache.put(request, networkResponse.clone()).catch((err) => {
       console.warn(request.url + ": " + err.message);
@@ -92,8 +101,11 @@ async function networkFirst(request) {
     // Return the API response
     return networkResponse;
   } catch (err) {
+    console.log("Service Worker] Network failed:", err);
     // Return the cached API response
-    const cachedResponse = await dynamicCache.match(request);
+    var cachedResponse = await dynamicCache.match(request);
+    if (cachedResponse == null) cachedResponse = new Response();
+    console.log("[Service Worker] cachedResponse:", cachedResponse);
     return cachedResponse;
   }
 }
