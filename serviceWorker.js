@@ -1,5 +1,5 @@
 //constants
-const DBG = true;
+const DBG = false;
 const VERSION = DBG ? "" + Math.random() : 7; //Also used as cache name. Manually change after every change in the service worker.
 const cacheName = VERSION;
 const assets = [
