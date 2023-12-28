@@ -69,13 +69,11 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (fetchEvent) => {
   console.log("[Service Worker] Event: Fetch");
   console.log("[Service Worker] Intercepted request:", fetchEvent.request.url);
-  fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then((res) => {
-      ret = res || fetch(fetchEvent.request);
-      console.log("[Service Worker] Response:", ret);
-      return ret;
-    })
-  );
+  if (fetchEvent.request.url.origin === location.origin) {
+    fetchEvent.respondWith(cacheFirst(fetchEvent.request));
+  } else {
+    fetchEvent.respondWith(networkFirst(fetchEvent.request));
+  }
 });
 async function cacheFirst(request) {
   console.log("[Service Worker] Cache first strategy");
@@ -83,6 +81,7 @@ async function cacheFirst(request) {
   return cachedResponse || fetch(request);
 }
 async function networkFirst(request) {
+  console.log("[Service Worker] Network first strategy");
   const dynamicCache = await caches.open(cacheName);
   try {
     const networkResponse = await fetch(request);
