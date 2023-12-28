@@ -656,16 +656,12 @@ video {
   isolation: auto;
 }
 
-.z-10 {
-  z-index: 10;
-}
-
-.z-20 {
-  z-index: 20;
-}
-
 .z-0 {
   z-index: 0;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .col-span-3 {
@@ -840,68 +836,12 @@ video {
   height: 116px;
 }
 
-.h-full {
-  height: 100%;
-}
-
-.h-\[58vw\] {
-  height: 58vw;
-}
-
-.h-\[58\.3vw\] {
-  height: 58.3vw;
-}
-
-.h-\[58\.5vw\] {
-  height: 58.5vw;
-}
-
-.h-\[60vw\] {
-  height: 60vw;
-}
-
-.h-\[62vw\] {
-  height: 62vw;
-}
-
-.h-\[65vw\] {
-  height: 65vw;
-}
-
-.h-\[75vw\] {
-  height: 75vw;
-}
-
-.h-\[55vw\] {
-  height: 55vw;
-}
-
-.h-\[59vw\] {
-  height: 59vw;
-}
-
-.h-\[61vw\] {
-  height: 61vw;
-}
-
-.h-\[57vw\] {
-  height: 57vw;
-}
-
-.h-\[56vw\] {
-  height: 56vw;
-}
-
-.h-\[56\.8vw\] {
-  height: 56.8vw;
-}
-
-.h-\[56\.5vw\] {
-  height: 56.5vw;
-}
-
 .h-\[56\.4vw\] {
   height: 56.4vw;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .min-h-\[32px\] {
@@ -932,21 +872,12 @@ video {
   width: 2rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.w-\[50\%\] {
-  width: 50%;
-}
-
 .w-\[100vw\] {
   width: 100vw;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .min-w-\[32px\] {
@@ -1865,18 +1796,6 @@ video {
   border-width: 1px;
 }
 
-.border-2 {
-  border-width: 2px;
-}
-
-.border-8 {
-  border-width: 8px;
-}
-
-.border-0 {
-  border-width: 0px;
-}
-
 .border-4 {
   border-width: 4px;
 }
@@ -1939,29 +1858,9 @@ video {
   border-style: none;
 }
 
-.border-indigo-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(79 70 229 / var(--tw-border-opacity));
-}
-
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.border-cyan-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(165 243 252 / var(--tw-border-opacity));
-}
-
 .border-sky-200 {
   --tw-border-opacity: 1;
   border-color: rgb(186 230 253 / var(--tw-border-opacity));
-}
-
-.border-sky-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(125 211 252 / var(--tw-border-opacity));
 }
 
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
@@ -2184,16 +2083,16 @@ video {
      object-fit: scale-down;
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .px-3 {
@@ -2924,7 +2823,7 @@ video {
 
 .screen-center {
   position: fixed;
-  top: 50%;
+  top: calc(50% - (env(safe-area-inset-bottom) / 2));
   left: 50%;
   transform: translate(-50%, -50%);
 }

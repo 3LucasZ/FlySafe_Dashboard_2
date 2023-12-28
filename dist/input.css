@@ -30,7 +30,7 @@
 }
 .screen-center {
   position: fixed;
-  top: 50%;
+  top: calc(50% - (env(safe-area-inset-bottom) / 2));
   left: 50%;
   transform: translate(-50%, -50%);
 }
