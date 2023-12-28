@@ -10,7 +10,7 @@ document.getElementById("flyPage").innerHTML = /*html*/ `
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 | gap-2 sm:gap-4">
         <div
-          onclick="ws_reconnect()"
+          onclick="ws_connect()"
           class="widget bg-gradient-to-br from-amber-400 to-amber-200"
         >
           Connect

@@ -121,12 +121,26 @@ async function toggleIsRecording() {
   updRecordUI();
 }
 
-function updateStatusUI(connected) {
-  statusDiv.innerHTML = connected ? "Connected" : "Not Connected";
-  statusDiv.className = connected
-    ? "widget bg-gradient-to-br from-green-400 to-green-200"
-    : "widget bg-gradient-to-br from-red-500 to-red-300";
+function updateStatusUI(status) {
+  if (status == 0) {
+    statusDiv.innerHTML = "Connecting";
+    statusDiv.className =
+      "widget bg-gradient-to-br from-yellow-500 to-yellow-300";
+  } else if (status == 1) {
+    statusDiv.innerHTML = "Connected";
+    statusDiv.className =
+      "widget bg-gradient-to-br from-green-400 to-green-200";
+  } else if (status == 1000) {
+    //merge disconnecting state with disconnected
+    statusDiv.innerHTML = "Disconnecting";
+    statusDiv.className =
+      "widget bg-gradient-to-br from-orange-500 to-orange-300";
+  } else {
+    statusDiv.innerHTML = "Not Connected";
+    statusDiv.className = "widget bg-gradient-to-br from-red-500 to-red-300";
+  }
 }
+updateStatusUI(3);
 async function reboot() {
   console.log("Rebooting the ESP");
   try {

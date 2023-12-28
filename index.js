@@ -22,59 +22,59 @@ if (ls_get("coef") === null) ls_set("coef", "1");
 if (ls_get("imperial") === null) ls_set("imperial", "1");
 
 //websocket handler
+//websocket.readyState => 0: CONNECTING, 1: OPEN, (2: CLOSING, 3: CLOSED) (treat 2,3 as one entity since its finnicky)
+//if connected: haven't received message within X seconds, force a disconnect
+//if connected or connecting: you can't connect again
+//if autoConnect and not connected: force a connect
 var websocket;
-var prevMsgTimestamp = 0;
-
+var prevConnectedTimestamp = 0; //when was the last time you were connected?
 window.onload = (event) => {
-  if (ls_get("autoConnect") == "1") ws_connect();
-  var stalkLoop = setInterval(stalk, 7500); //run stalk every 7.5s
+  setInterval(wsStalk, 1000);
 };
-function stalk() {
+function wsStalk() {
   console.log("stalk");
-  //if 2.5s have passed since the last message was received, force a reconnect
-  if (getSecondsDeep() - prevMsgTimestamp > 2.5 && ls_get("autoConnect") == "1")
-    ws_reconnect();
+  if (
+    (websocket == null || websocket.readyState > 1) &&
+    ls_get("autoConnect") == "1"
+  )
+    ws_connect();
+  if (
+    websocket != null &&
+    getSecondsDeep() - prevConnectedTimestamp > 3 &&
+    websocket.readyState == 1
+  )
+    ws_disconnect();
 }
-
 function ws_connect() {
+  if (websocket != null && websocket.readyState <= 1) return;
   const url = "wss://192.168.4.1/ws";
-  console.log("Connecting to:", url);
   websocket = new WebSocket(url);
+  console.log("[index.js] Websocket: User forced connect to", url);
+  prevConnectedTimestamp = getSecondsDeep();
+  updateStatusUI(websocket.readyState);
   websocket.onopen = function (evt) {
-    onOpen(evt);
+    console.log("[index.js] Websocket: Connected", evt);
+    prevConnectedTimestamp = getSecondsDeep();
+    updateStatusUI(websocket.readyState);
   };
   websocket.onclose = function (evt) {
-    onClose(evt);
+    console.log("[index.js] Websocket: Disconnected", evt);
+    updateStatusUI(websocket.readyState);
   };
   websocket.onmessage = function (evt) {
-    onMessage(evt);
-  };
-  websocket.onerror = function (evt) {
-    onError(evt);
-  };
-  function onOpen(evt) {
-    console.log("Websocket connected");
-    updateStatusUI(true);
-  }
-  function onClose(evt) {
-    console.log("Websocket disconnected");
-    updateStatusUI(false);
-  }
-  function onMessage(evt) {
-    console.log("WS Received: " + evt.data);
-    prevMsgTimestamp = getSecondsDeep();
+    console.log("[index.js] Websocket: Received", evt.data);
+    prevConnectedTimestamp = getSecondsDeep();
     handleNewY(evt.data);
-  }
-  function onError(evt) {
-    console.log(evt.data);
-  }
+  };
+  //always called right before onclose, describing why the close happened
+  websocket.onerror = function (evt) {
+    console.log("[index.js] Websocket: Error", evt);
+    updateStatusUI(websocket.readyState);
+  };
 }
 function ws_disconnect() {
-  console.log("Manually disconnected websocket");
+  //doesn't trigger onclose
+  console.log("[index.js] Websocket: User forced disconnect");
   websocket.close();
-  updateStatusUI(false);
-}
-function ws_reconnect() {
-  if (websocket) ws_disconnect();
-  ws_connect();
+  updateStatusUI(websocket.readyState);
 }
