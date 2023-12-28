@@ -26,6 +26,8 @@
   - https://www.sslshopper.com/certificate-decoder.html
   - https://github.com/espressif/esp-idf/tree/master/examples/protocols/https_server/wss_server
     - openssl req -newkey rsa:2048 -nodes -keyout prvtkey.pem -x509 -days 3650 -out cacert.pem -subj "/CN=ESP32 HTTPS server example"
+- PWA
+  - https://github.com/gokulkrishh/demo-progressive-web-app/tree/master
 
 ### Choices
 
