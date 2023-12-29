@@ -18,7 +18,7 @@ if (ls_get("volume") === null) ls_set("volume", "5");
 if (ls_get("speakMode") === null) ls_set("speakMode", "0");
 if (ls_get("shown") === null) ls_set("shown", "10");
 if (ls_get("offset") === null) ls_set("offset", "0");
-if (ls_get("coef") === null) ls_set("coef", "1");
+if (ls_get("angle") === null) ls_set("angle", "0");
 if (ls_get("imperial") === null) ls_set("imperial", "1");
 
 //websocket handler
