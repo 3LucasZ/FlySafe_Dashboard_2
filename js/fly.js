@@ -18,7 +18,10 @@ var recM = []; //meters/second
 function handleNewY(newCm) {
   //calc new
   t = getSecondsDeep();
-  y = (newCm - ls_get("offset")) / 100;
+  y = Math.max(
+    0,
+    (newCm * Math.cos(degToRad(ls_get("angle"))) - ls_get("offset")) / 100
+  );
   m = preT == 0 ? 0 : (y - preY) / (t - preT);
   //DETECT SPECIAL CASE
   const notDetected = newCm <= 0 || newCm >= 4000;
