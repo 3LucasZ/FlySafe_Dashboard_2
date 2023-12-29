@@ -113,12 +113,17 @@ class RawSound {
     this.osc.type = "sine";
     this.osc.frequency.value = 0;
     this.osc.connect(this.vol);
-    this.osc.start();
     this.lastTime = getSecondsDeep();
   }
   beginStream() {
     //only called when audio switched on
+    console.log("beginStream");
     this.vol.connect(this.audioCtx.destination);
+    try {
+      this.osc.start();
+    } catch (e) {
+      console.log("e", e);
+    }
   }
   stopStream() {
     //only called when audio switched off
