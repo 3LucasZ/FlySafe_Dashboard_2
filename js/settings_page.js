@@ -46,7 +46,7 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
         </div>
       </button>
       <button
-        onclick="say('audio success')"
+        onclick="say('TTS success')"
         class="flex flex-row gap-2"
         id="volDiv"
       ></button>
