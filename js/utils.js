@@ -2,6 +2,9 @@
 function mToFt(x) {
   return x * 3.28084;
 }
+function ftToM(x) {
+  return x / 3.28084;
+}
 //get date time
 const zeroPad = (num, places) => String(num).padStart(places, "0");
 function getSeconds() {
@@ -90,11 +93,44 @@ function sayNum(num) {
 function say(str) {
   var msg = new SpeechSynthesisUtterance();
   msg.text = str;
-  msg.volume = (Number(ls_get("volume")) * 20) / 100;
+  msg.volume = audio ? (Number(ls_get("volume")) * 20) / 100 : 0;
   window.speechSynthesis.cancel(); // !!! clear q
   window.speechSynthesis.speak(msg);
 }
-
+class RawSound {
+  constructor() {
+    //only called in page init (right below)
+    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    this.osc = this.audioCtx.createOscillator();
+    this.vol = this.audioCtx.createGain();
+    //
+    this.osc.type = "sine";
+    this.osc.frequency.value = 0;
+    this.osc.connect(this.vol);
+    this.osc.start();
+    this.lastTime = getSecondsDeep();
+  }
+  beginStream() {
+    //only called when audio switched on
+    this.vol.connect(this.audioCtx.destination);
+  }
+  stopStream() {
+    //only called when audio switched off
+    this.vol.disconnect(this.audioCtx.destination);
+  }
+  playNote(hz) {
+    //only called
+    this.lastTime = getSecondsDeep();
+    if (hz < 0 || hz > 2000) return;
+    this.vol.gain.value = (Number(ls_get("volume")) * 20) / 100.0;
+    this.osc.frequency.value = hz;
+    setTimeout(function () {
+      if (getSecondsDeep() - rawSound.lastTime > 0.8)
+        rawSound.vol.gain.value = 0.0;
+    }, 1000);
+  }
+}
+const rawSound = new RawSound();
 //rng
 function rng(mx) {
   return Math.floor(Math.random() * mx);
@@ -132,4 +168,20 @@ async function changePage(page) {
   if (curPage) document.getElementById(curPage).className = "hidden";
   curPage = page;
   document.getElementById(curPage).className = "block";
+}
+
+//distToHz
+function distToHz(dist) {
+  const a = 40;
+  const b = 2000;
+  if (ls_get("imperial") == "1") dist = ftToM(dist);
+  if (dist < 0 || dist > a) return 0;
+  //
+  x = dist;
+  X = x / a - 1;
+  Y = -Math.sqrt(1 - X * X);
+  y = (Y + 1) * b;
+  //
+  var hz = y;
+  return Math.round(hz);
 }
