@@ -46,15 +46,18 @@ function handleNewY(newCm) {
       }
       if (callout !== null && callout !== undefined) {
         //threshold was hit
-        if (audio) say(callout);
+        say(callout);
         preSayY = y;
         preSayT = t;
       }
     } else if (ls_get("speakMode") === "1") {
-      if (audio) sayNum(y);
+      sayNum(y);
       preSayY = y;
       preSayT = t;
     }
+  }
+  if (ls_get("speakMode") === "2") {
+    rawSound.playNote(distToHz(y));
   }
 }
 
@@ -154,11 +157,16 @@ function refresh() {
 }
 
 //vol on and off
-audio = false;
+var audio = false;
 audioBtn = document.getElementById("audioBtn");
 function toggleAudio() {
-  say("");
   audio = !audio;
+  if (audio) {
+    say("on");
+    rawSound.beginStream();
+  } else {
+    rawSound.stopStream();
+  }
   updAudioUI();
 }
 function updAudioUI() {
