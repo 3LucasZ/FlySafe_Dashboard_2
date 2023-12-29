@@ -5,6 +5,12 @@ function mToFt(x) {
 function ftToM(x) {
   return x / 3.28084;
 }
+function radToDeg(angle) {
+  return angle * (180 / Math.PI);
+}
+function degToRad(angle) {
+  return angle * (Math.PI / 180);
+}
 //get date time
 const zeroPad = (num, places) => String(num).padStart(places, "0");
 function getSeconds() {
@@ -119,7 +125,8 @@ class RawSound {
     this.vol.disconnect(this.audioCtx.destination);
   }
   playNote(hz) {
-    //only called
+    //only called when ws receives dist
+    console.log(hz);
     this.lastTime = getSecondsDeep();
     if (hz < 0 || hz > 2000) return;
     this.vol.gain.value = (Number(ls_get("volume")) * 20) / 100.0;
