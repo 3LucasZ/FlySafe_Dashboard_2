@@ -7,8 +7,8 @@ const shownDiv = document.getElementById("shownDiv");
 const shownInputDiv = document.getElementById("shownInputDiv");
 const offsetDiv = document.getElementById("offsetDiv");
 const offsetInputDiv = document.getElementById("offsetInputDiv");
-const coefDiv = document.getElementById("coefDiv");
-const coefInputDiv = document.getElementById("coefInputDiv");
+const angleDiv = document.getElementById("angleDiv");
+const angleInputDiv = document.getElementById("angleInputDiv");
 const imperialDiv = document.getElementById("imperialDiv");
 
 //CONNECTION
@@ -90,6 +90,7 @@ function setShown() {
   updShownUI();
 }
 
+//TUNE
 //offset
 function updOffsetUI() {
   offsetDiv.innerHTML = ls_get("offset");
@@ -98,22 +99,21 @@ updOffsetUI();
 function setOffset() {
   offset = Number(offsetInputDiv.value);
   offset = Math.max(offset, 0);
-  offset = Math.min(offset, 5000);
+  offset = Math.min(offset, 1000);
   ls_set("offset", "" + offset);
   updOffsetUI();
 }
-
-//coef
-function updCoefUI() {
-  coefDiv.innerHTML = ls_get("coef");
+//angle
+function updAngleUI() {
+  angleDiv.innerHTML = ls_get("angle");
 }
-updCoefUI();
-function setCoef() {
-  coef = Number(coefInputDiv.value);
-  coef = Math.max(coef, 0.01);
-  coef = Math.min(coef, 1);
-  ls_set("coef", "" + coef);
-  updCoefUI();
+updAngleUI();
+function setAngle() {
+  angle = Number(angleInputDiv.value);
+  angle = Math.max(angle, 0);
+  angle = Math.min(angle, 45);
+  ls_set("angle", "" + angle);
+  updAngleUI();
 }
 
 //imperial

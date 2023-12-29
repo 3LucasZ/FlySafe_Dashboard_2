@@ -119,20 +119,20 @@ document.getElementById("settingsPage").innerHTML = /*html*/ `
     </div>
     <div class="flex flex-row gap-2 mt-2">
       <div class="widget bg-amber-100 basis-1/2">
-        Coef:
-        <span id="coefDiv">?</span>
+        Angle:
+        <span id="angleDiv">?</span>°
       </div>
       <input
         type="number"
-        id="coefInputDiv"
+        id="angleInputDiv"
         class="widget basis-1/4"
-        placeholder="e.g. 0.93"
+        placeholder="e.g. 10"
         required
       />
       <input
         type="button"
         value="Set"
-        onclick="setCoef()"
+        onclick="setAngle()"
         class="widget bg-amber-100 basis-1/4"
       />
     </div>
