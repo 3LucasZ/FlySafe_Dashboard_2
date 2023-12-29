@@ -20,9 +20,15 @@ function handleNewY(newCm) {
   t = getSecondsDeep();
   y = (newCm - ls_get("offset")) / 100;
   m = preT == 0 ? 0 : (y - preY) / (t - preT);
+  //DETECT SPECIAL CASE
+  const notDetected = newCm <= 0 || newCm >= 4000;
+  if (notDetected) y = 5000;
   //upd distDiv
-  distDiv.innerHTML =
-    ls_get("imperial") == "1" ? mToFt(y).toFixed(1) : y.toFixed(2);
+  if (notDetected) {
+    distDiv.innerHTML = "DNE";
+  } else
+    distDiv.innerHTML =
+      ls_get("imperial") == "1" ? mToFt(y).toFixed(1) : y.toFixed(2);
   //upd graph
   updGraph(t, y, m);
   //upd rec as metric, future will convert to imperial
@@ -51,7 +57,8 @@ function handleNewY(newCm) {
         preSayT = t;
       }
     } else if (ls_get("speakMode") === "1") {
-      sayNum(y);
+      if (notDetected) say("DNE");
+      else sayNum(y);
       preSayY = y;
       preSayT = t;
     }
