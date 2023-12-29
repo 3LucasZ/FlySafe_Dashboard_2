@@ -55,12 +55,17 @@ function volDown() {
 }
 //speakerMode
 function updSpeakerModeUI() {
-  if (ls_get("speakMode") == "0") speakModeDiv.innerHTML = "Threshold";
-  else if (ls_get("speakMode") == "1") speakModeDiv.innerHTML = "Periodic";
+  if (ls_get("speakMode") == "0") {
+    speakModeDiv.innerHTML = "Threshold";
+  } else if (ls_get("speakMode") == "1") {
+    speakModeDiv.innerHTML = "Periodic";
+  } else if (ls_get("speakMode") == "2") {
+    speakModeDiv.innerHTML = "Tone";
+  }
 }
 updSpeakerModeUI();
 function changeSpeakMode() {
-  ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 2));
+  ls_set("speakMode", "" + ((Number(ls_get("speakMode")) + 1) % 3));
   updSpeakerModeUI();
 }
 //checkSynth
